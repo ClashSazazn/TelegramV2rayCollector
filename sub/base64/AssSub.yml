@@ -1,356 +1,3087 @@
-mixed-port: 7890
-allow-lan: true
-tcp-concurrent: true
-enable-process: true
-find-process-mode: always
+port: 7890
+socks-port: 7891
+allow-lan: false
 mode: rule
-log-level: error
-ipv6: true
+log-level: info
 external-controller: 127.0.0.1:9090
-experimental:
-  ignore-resolve-fail: true
-  sniff-tls-sni: true
-  tracing: true
-hosts:
-  "localhost": 127.0.0.1
-profile:
-  store-selected: true
-  store-fake-ip: true
-
-sniffer:
-  enable: true
-  sniff:
-    http: { ports: [1-442, 444-8442, 8444-65535], override-destination: true }
-    tls: { ports: [1-79, 81-8079, 8081-65535], override-destination: true }
-  force-domain:
-      - "+.v2ex.com"
-      - www.google.com
-      - google.com
-  skip-domain:
-      - Mijia Cloud
-      - dlg.io.mi.com
-  sniffing:
-    - tls
-    - http
-  port-whitelist:
-    - "80"
-    - "443"
-
-tun:
-  enable: true
-  prefer-h3: true
-  listen: 0.0.0.0:53
-  stack: gvisor
-  dns-hijack:
-     - "any:53"
-     - "tcp://any:53"
-  auto-redir: true
-  auto-route: true
-  auto-detect-interface: true
-
 dns:
   enable: true
-  ipv6: true
-  default-nameserver:
-    - '1.1.1.1'
-    - '8.8.8.8'
+  ipv6: false
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - 'stun.*.*'
-    - 'stun.*.*.*'
-    - '+.stun.*.*'
-    - '+.stun.*.*.*'
-    - '+.stun.*.*.*.*'
-    - '+.stun.*.*.*.*.*'
-    - '*.lan'
-    - '+.msftncsi.com'
-    - msftconnecttest.com
-    - 'time?.*.com'
-    - 'time.*.com'
-    - 'time.*.gov'
-    - 'time.*.apple.com'
-    - time-ios.apple.com
-    - 'time1.*.com'
-    - 'time2.*.com'
-    - 'time3.*.com'
-    - 'time4.*.com'
-    - 'time5.*.com'
-    - 'time6.*.com'
-    - 'time7.*.com'
-    - 'ntp?.*.com'
-    - 'ntp.*.com'
-    - 'ntp1.*.com'
-    - 'ntp2.*.com'
-    - 'ntp3.*.com'
-    - 'ntp4.*.com'
-    - 'ntp5.*.com'
-    - 'ntp6.*.com'
-    - 'ntp7.*.com'
-    - '+.pool.ntp.org'
-    - '+.ipv6.microsoft.com'
-    - speedtest.cros.wr.pvp.net
-    - network-test.debian.org
-    - detectportal.firefox.com
-    - cable.auth.com
-    - miwifi.com
-    - routerlogin.com
-    - routerlogin.net
-    - tendawifi.com
-    - tendawifi.net
-    - tplinklogin.net
-    - tplinkwifi.net
-    - '*.xiami.com'
-    - tplinkrepeater.net
-    - router.asus.com
-    - '*.*.*.srv.nintendo.net'
-    - '*.*.stun.playstation.net'
-    - '*.openwrt.pool.ntp.org'
-    - resolver1.opendns.com
-    - 'GC._msDCS.*.*'
-    - 'DC._msDCS.*.*'
-    - 'PDC._msDCS.*.*'
-  use-hosts: true
   nameserver:
-    - '8.8.4.4'
-    - '1.0.0.1'
-    - "https://1.0.0.1/dns-query"
-    - "https://8.8.4.4/dns-query"
-
+    - 114.114.114.114
+    - 223.5.5.5
+    - 8.8.8.8
+    - 9.9.9.9
+    - 1.1.1.1
+    - https://dns.google/dns-query
+    - tls://dns.google:853
 proxies:
-  - {"name":"رایگان | TROJAN | @PrivateVPNs | DE🇩🇪 | 0️⃣1️⃣ | 3️⃣6️⃣","type":"trojan","server":"18.158.129.244","port":22222,"udp":false,"password":"telegram-id-privatevpns","skip-cert-verify":false,"network":"tcp","client-fingerprint":"chrome","sni":"trojan.burgerip.co.uk"}
-  - {"name":"رایگان | TROJAN | @PrivateVPNs | SE🇸🇪 | 0️⃣2️⃣ | 3️⃣7️⃣","type":"trojan","server":"51.20.223.153","port":22222,"udp":false,"password":"telegram-id-privatevpns","skip-cert-verify":false,"network":"tcp","client-fingerprint":"chrome","sni":"trojan.burgerip.co.uk"}
-  - {"name":"رایگان | TROJAN | @PrivateVPNs | SE🇸🇪 | 0️⃣3️⃣ | 3️⃣8️⃣","type":"trojan","server":"13.50.205.4","port":22222,"udp":false,"password":"telegram-id-privatevpns","skip-cert-verify":false,"network":"tcp","client-fingerprint":"chrome","sni":"trojan.burgerip.co.uk"}
-  - {"name":"رایگان | TROJAN | @PrivateVPNs | IE🇮🇪 | 0️⃣4️⃣ | 3️⃣9️⃣","type":"trojan","server":"54.77.147.49","port":22222,"udp":false,"password":"telegram-id-privatevpns","skip-cert-verify":false,"network":"tcp","client-fingerprint":"chrome","sni":"trojan.burgerip.co.uk"}
-  - {"name":"رایگان | TROJAN | @PrivateVPNs | IE🇮🇪 | 0️⃣5️⃣ | 4️⃣0️⃣","type":"trojan","server":"52.51.215.246","port":22222,"udp":false,"password":"telegram-id-privatevpns","skip-cert-verify":false,"network":"tcp","client-fingerprint":"chrome","sni":"trojan.burgerip.co.uk"}
-  - {"name":"رایگان | TROJAN | @PrivateVPNs | GB🇬🇧 | 0️⃣6️⃣ | 4️⃣1️⃣","type":"trojan","server":"35.178.92.210","port":22222,"udp":false,"password":"telegram-id-privatevpns","skip-cert-verify":false,"network":"tcp","client-fingerprint":"chrome","sni":"trojan.burgerip.co.uk"}
-  - {"name":"رایگان | TROJAN | @PrivateVPNs | GB🇬🇧 | 0️⃣7️⃣ | 4️⃣2️⃣","type":"trojan","server":"18.175.19.175","port":22222,"udp":false,"password":"telegram-id-privatevpns","skip-cert-verify":false,"network":"tcp","client-fingerprint":"chrome","sni":"trojan.burgerip.co.uk"}
-  - {"name":"رایگان | TROJAN | @DirectVPN | US🇺🇸 | 0️⃣1️⃣ | 4️⃣3️⃣","type":"trojan","server":"54.212.50.10","port":22222,"udp":false,"password":"telegram-id-directvpn","skip-cert-verify":false,"network":"tcp","client-fingerprint":"chrome","sni":"trojan.burgerip.co.uk"}
-  - {"name":"رایگان | TROJAN | @proxyymeliii | NL🇳🇱 | 0️⃣1️⃣ | 4️⃣4️⃣","type":"trojan","server":"85.192.41.133","port":11,"udp":false,"password":"kjAwOsOVed","skip-cert-verify":false,"network":"tcp","client-fingerprint":"chrome"}
-  - {"name":"رایگان | TROJAN | @kingofilter | US🇺🇸 | 0️⃣1️⃣ | 4️⃣5️⃣","type":"trojan","server":"198.41.220.4","port":443,"udp":false,"password":"71409d3e488548e8bb076d229778f008","skip-cert-verify":false,"network":"tcp","client-fingerprint":"chrome","sni":"jobscareerforlawyers.com"}
-  - {"name":"رایگان | SS | @azadi_az_inja_migzare | AT🇦🇹 | 0️⃣1️⃣ | 4️⃣6️⃣","type":"ss","server":"vienna.telegavpn.com","port":61992,"password":"44NebhqlhRGbaKc0YWM7Oq","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"رایگان | SS | @azadi_az_inja_migzare | DE🇩🇪 | 0️⃣2️⃣ | 4️⃣7️⃣","type":"ss","server":"outline.de.outlinekeys.net","port":20888,"password":"Tt6bOWSp9WDzUvmxIhMjFU","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"رایگان | SS | @azadi_az_inja_migzare | CA🇨🇦 | 0️⃣3️⃣ | 4️⃣8️⃣","type":"ss","server":"23.162.200.225","port":9102,"password":"e4FCWrgpkji3QY","cipher":"aes-256-gcm"}
-  - {"name":"رایگان | SS | @azadi_az_inja_migzare | FR🇫🇷 | 0️⃣4️⃣ | 4️⃣9️⃣","type":"ss","server":"paris.telegavpn.com","port":9802,"password":"T2JH00UYT6uOHKvMfguapd","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"رایگان | SS | @azadi_az_inja_migzare | US🇺🇸 | 0️⃣5️⃣ | 5️⃣0️⃣","type":"ss","server":"23.154.136.37","port":8118,"password":"cdBIDV42DCwnfIN","cipher":"aes-256-gcm"}
-  - {"name":"رایگان | SS | @azadi_az_inja_migzare | GB🇬🇧 | 0️⃣6️⃣ | 5️⃣1️⃣","type":"ss","server":"89.185.84.30","port":20228,"password":"ia5LxWdirrz8X6n9b784Ff","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"رایگان | SS | @VmessProtocol | GB🇬🇧 | 0️⃣1️⃣ | 5️⃣2️⃣","type":"ss","server":"series-a2-mec.varzesh360.co","port":443,"password":"u17T3BvpYaaiuW2c","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"رایگان | SS | @VmessProtocol | GB🇬🇧 | 0️⃣2️⃣ | 5️⃣3️⃣","type":"ss","server":"series-a2-mec.samanehha.co","port":443,"password":"u17T3BvpYaaiuW2c","cipher":"chacha20-poly1305"}
-  - {"name":"رایگان | SS | @VmessProtocol | GB🇬🇧 | 0️⃣3️⃣ | 5️⃣4️⃣","type":"ss","server":"series-a2-mec.samanehha.co","port":443,"password":"u17T3BvpYaaiuW2c","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"رایگان | SS | @VmessProtocol | US🇺🇸 | 0️⃣6️⃣ | 5️⃣5️⃣","type":"ss","server":"205.134.180.145","port":443,"password":"hgLCgfLRgB6d","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"رایگان | SS | @VmessProtocol | DE🇩🇪 | 0️⃣7️⃣ | 5️⃣6️⃣","type":"ss","server":"213.183.44.17","port":8388,"password":"XwWVRmO2kKu6qK1Xlih3Lfe6Lh3RRa9r","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"رایگان | SS | @OutlineVpnOfficial | PL🇵🇱 | 0️⃣1️⃣ | 5️⃣7️⃣","type":"ss","server":"54.36.174.181","port":3306,"password":"Y6R9pAtvxxzmGC","cipher":"aes-256-gcm"}
-  - {"name":"رایگان | SS | @OutlineVpnOfficial | DE🇩🇪 | 0️⃣2️⃣ | 5️⃣8️⃣","type":"ss","server":"49.13.10.50","port":1194,"password":"Uxm4ADwftKdXq5qRA4ZfHS","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"رایگان | SS | @OutlineVpnOfficial | AT🇦🇹 | 0️⃣3️⃣ | 5️⃣9️⃣","type":"ss","server":"95.164.9.144","port":2927,"password":"ug4Fu79SEREdFGlt2sUyT4","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"رایگان | SS | @OutlineVpnOfficial | RU🇷🇺 | 0️⃣4️⃣ | 6️⃣0️⃣","type":"ss","server":"45.139.24.63","port":57456,"password":"3fbeb668f48414f6","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"رایگان | SS | @OutlineVpnOfficial | SE🇸🇪 | 0️⃣5️⃣ | 6️⃣1️⃣","type":"ss","server":"94.228.165.234","port":15214,"password":"DmMQUmI7pgQDnrWqLXC00L","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"رایگان | SS | @kingofilter | AE🇦🇪 | 0️⃣1️⃣ | 6️⃣2️⃣","type":"ss","server":"series-a2.samanehha.co","port":443,"password":"mps3FwmDjLrWaOVg","cipher":"chacha20-ietf-poly1305"}
-  - {"name":"رایگان | SS | @ROMAX_VPN | US🇺🇸 | 0️⃣1️⃣ | 6️⃣3️⃣","type":"ss","server":"23.157.40.24","port":8882,"password":"kDWvXYZoTBcGkC4","cipher":"aes-256-gcm"}
-  - {"name":"رایگان | SS | @ROMAX_VPN | CA🇨🇦 | 0️⃣2️⃣ | 6️⃣4️⃣","type":"ss","server":"23.162.200.213","port":2375,"password":"faBAoD54k87UJG7","cipher":"aes-256-gcm"}
+  - remarks: 1-vless-worker-45.8.105.147,1
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 2087
+    sni: msw1.clash-sazan-eng.WOrkErS.Dev
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.WOrkErS.Dev
+    path: vless-ws/?ed=2048
+    address: 45.8.105.147,1
+    fp: randomized
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,10-20,20-50
+  - remarks: 2-vless-worker-104.17.161.0,3
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 2053
+    sni: msw1.clash-sazan-eng.WoRkers.DEv
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.WoRkers.DEv
+    path: vless-ws/?ed=2048
+    address: 104.17.161.0,3
+    fp: safari
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,50-100,10-50
+  - remarks: 3-vless-worker-104.17.161.198,4
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 2083
+    sni: msw1.clash-sazan-eng.WoRkERS.dEV
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.WoRkERS.dEV
+    path: vless-ws/?ed=2048
+    address: 104.17.161.198,4
+    fp: firefox
+    alpn: h2,http/1.1
+    fragment: tlshello,10-50,20-50
+  - remarks: 4-vless-worker-104.17.216.23,4
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 2096
+    sni: msw1.clash-sazan-eng.wOrkErs.deV
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.wOrkErs.deV
+    path: vless-ws/?ed=2048
+    address: 104.17.216.23,4
+    fp: chrome
+    alpn: h2
+    fragment: tlshello,20-50,10-20
+  - remarks: 5-vless-worker-104.18.50.109,2
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 2083
+    sni: msw1.clash-sazan-eng.wOrKeRS.DEv
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.wOrKeRS.DEv
+    path: vless-ws/?ed=2048
+    address: 104.18.50.109,2
+    fp: edge
+    alpn: h2,http/1.1
+    fragment: tlshello,20-50,20-50
+  - remarks: 6-vless-worker-104.17.215.18,4
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 2087
+    sni: msw1.clash-sazan-eng.WORkers.dev
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.WORkers.dev
+    path: vless-ws/?ed=2048
+    address: 104.17.215.18,4
+    fp: ios
+    alpn: http/1.1
+    fragment: tlshello,20-50,10-50
+  - remarks: 7-vless-worker-104.19.169.198,3
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 443
+    sni: msw1.clash-sazan-eng.wORkeRs.DEv
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.wORkeRs.DEv
+    path: vless-ws/?ed=2048
+    address: 104.19.169.198,3
+    fp: ios
+    alpn: h2
+    fragment: tlshello,30-80,20-50
+  - remarks: 8-vless-worker-104.19.116.203,4
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 2053
+    sni: msw1.clash-sazan-eng.wOrkerS.DeV
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.wOrkerS.DeV
+    path: vless-ws/?ed=2048
+    address: 104.19.116.203,4
+    fp: edge
+    alpn: h2,http/1.1
+    fragment: tlshello,10-20,10-20
+  - remarks: 9-vless-worker-104.18.50.109,2
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 443
+    sni: msw1.clash-sazan-eng.workeRS.DeV
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.workeRS.DeV
+    path: vless-ws/?ed=2048
+    address: 104.18.50.109,2
+    fp: ios
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,10-50,10-20
+  - remarks: 10-vless-worker-104.17.215.107,4
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 8443
+    sni: msw1.clash-sazan-eng.wORKErS.DEV
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.wORKErS.DEV
+    path: vless-ws/?ed=2048
+    address: 104.17.215.107,4
+    fp: android
+    alpn: http/1.1
+    fragment: tlshello,10-20,10-50
+  - remarks: 11-vless-worker-104.17.108.24,1
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 2053
+    sni: msw1.clash-sazan-eng.WOrkeRs.deV
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.WOrkeRs.deV
+    path: vless-ws/?ed=2048
+    address: 104.17.108.24,1
+    fp: firefox
+    alpn: http/1.1
+    fragment: tlshello,30-80,20-50
+  - remarks: 12-vless-worker-93.114.64.221,4
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 443
+    sni: msw1.clash-sazan-eng.wOrkeRs.deV
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.wOrkeRs.deV
+    path: vless-ws/?ed=2048
+    address: 93.114.64.221,4
+    fp: firefox
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,30-80,10-20
+  - remarks: 13-vless-worker-104.18.50.109,2
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 2087
+    sni: msw1.clash-sazan-eng.wORkeRs.deV
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.wORkeRs.deV
+    path: vless-ws/?ed=2048
+    address: 104.18.50.109,2
+    fp: chrome
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,50-100,10-20
+  - remarks: 14-vless-worker-104.18.237.80,4
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 443
+    sni: msw1.clash-sazan-eng.wORKErs.DeV
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.wORKErs.DeV
+    path: vless-ws/?ed=2048
+    address: 104.18.237.80,4
+    fp: firefox
+    alpn: h2,http/1.1
+    fragment: tlshello,30-80,10-20
+  - remarks: 15-vless-worker-104.19.120.53,2
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 2087
+    sni: msw1.clash-sazan-eng.worKeRS.DEV
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.worKeRS.DEV
+    path: vless-ws/?ed=2048
+    address: 104.19.120.53,2
+    fp: randomized
+    alpn: h2
+    fragment: tlshello,10-20,10-20
+  - remarks: 16-vless-worker-104.18.198.64,2
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 2096
+    sni: msw1.clash-sazan-eng.worKers.DeV
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.worKers.DeV
+    path: vless-ws/?ed=2048
+    address: 104.18.198.64,2
+    fp: chrome
+    alpn: h3,h2
+    fragment: tlshello,10-50,10-20
+  - remarks: 17-vless-worker-104.17.119.77,2
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 2053
+    sni: msw1.clash-sazan-eng.WOrKErs.dEv
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.WOrKErs.dEv
+    path: vless-ws/?ed=2048
+    address: 104.17.119.77,2
+    fp: edge
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,50-100,10-20
+  - remarks: 18-vless-worker-104.18.115.85,5
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 2087
+    sni: msw1.clash-sazan-eng.wORkERS.dEv
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.wORkERS.dEv
+    path: vless-ws/?ed=2048
+    address: 104.18.115.85,5
+    fp: ios
+    alpn: h2
+    fragment: tlshello,10-20,20-50
+  - remarks: 19-vless-worker-104.17.166.53,1
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 2053
+    sni: msw1.clash-sazan-eng.WORKERs.dEv
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.WORKERs.dEv
+    path: vless-ws/?ed=2048
+    address: 104.17.166.53,1
+    fp: randomized
+    alpn: http/1.1
+    fragment: tlshello,20-50,10-20
+  - remarks: 20-vless-worker-104.27.46.249,2
+    configType: vless
+    security: tls
+    tls: tls
+    network: ws
+    port: 443
+    sni: msw1.clash-sazan-eng.workeRs.Dev
+    uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+    host: msw1.clash-sazan-eng.workeRs.Dev
+    path: vless-ws/?ed=2048
+    address: 104.27.46.249,2
+    fp: chrome
+    alpn: h2
+    fragment: tlshello,50-100,10-50
+  - configType: vmess
+    remarks: 21-🏁RELAY-172.67.199.34-6119-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 20e92881-5fb4-4b05-bc77-57929476dc69
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.wORkeRs.DEV
+    path: /lvryzenkvm1gb.sharecentre.online:443/shirker
+    tls: tls
+    sni: msw1.clash-sazan-eng.wORkeRs.DEV
+    fp: randomized
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,30-80,20-50
+  - configType: vmess
+    remarks: 22-🏁RELAY-203.30.190.191-1466-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 56a2188b-2ab7-402c-b9b8-34847fdf0958
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.WORkErs.DEV
+    path: /oplg1.zhujicn2.com:443/5QNROSRV
+    tls: tls
+    sni: msw1.clash-sazan-eng.WORkErs.DEV
+    fp: android
+    alpn: h3,h2
+    fragment: tlshello,50-100,10-50
+  - configType: vmess
+    remarks: 23-🏁RELAY-104.18.27.8-1098-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: c8abf66a-1903-4638-a448-9c86733e4254
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.WOrKERs.dev
+    path: /sand.blanku.me:443/wss13480
+    tls: tls
+    sni: msw1.clash-sazan-eng.WOrKERs.dev
+    fp: edge
+    alpn: h2
+    fragment: tlshello,10-50,10-50
+  - configType: vmess
+    remarks: 24-🏁RELAY-198.41.212.92-5852-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: bd014532-1f8b-4d33-b79d-50131d8d4633
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.WORKERS.DeV
+    path: /www.998808.xyz:443/vbje5ytgwfgdrhe
+    tls: tls
+    sni: msw1.clash-sazan-eng.WORKERS.DeV
+    fp: firefox
+    alpn: h3,h2
+    fragment: tlshello,30-80,20-50
+  - configType: vmess
+    remarks: 25-🏁RELAY-104.21.15.212-0250-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 76221bfb-e92f-4e80-81c5-6fe48f50ac0b
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.worKERs.deV
+    path: /glweidf.sbs:443/linkws
+    tls: tls
+    sni: msw1.clash-sazan-eng.worKERs.deV
+    fp: safari
+    alpn: http/1.1
+    fragment: tlshello,30-80,10-20
+  - configType: vmess
+    remarks: 26-🏁RELAY-172.67.143.74-1031-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: A9A56660-4554-4278-863A-D3CE30294B59
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.WorkErS.DEV
+    path: /pure.daycat.space:443/
+    tls: tls
+    sni: msw1.clash-sazan-eng.WorkErS.DEV
+    fp: firefox
+    alpn: h2
+    fragment: tlshello,50-100,20-50
+  - configType: vmess
+    remarks: 27-🇺🇸US-66.241.124.229-1011-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: ea4909ef-7ca6-4b46-bf2e-6c07896ef338
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.worKErs.DeV
+    path: /cold-dawn-9246.fly.dev:443/ea4909ef-7ca6-4b46-bf2e-6c07896ef338-vm
+    tls: tls
+    sni: msw1.clash-sazan-eng.worKErs.DeV
+    fp: randomized
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,20-50,10-20
+  - configType: vmess
+    remarks: 28-🏁RELAY-104.21.36.26-2361-worker
+    address: 104.16.118.238,1
+    port: 8443
+    uuid: 1cec1ebc-b489-4769-f2d9-e079b5832a60
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.worKers.deV
+    path: /cloudconeaaa.gorgorchicken.one:8443/cloudconeaaa
+    tls: tls
+    sni: msw1.clash-sazan-eng.worKers.deV
+    fp: chrome
+    alpn: http/1.1
+    fragment: tlshello,10-50,10-50
+  - configType: vmess
+    remarks: 29-🏁RELAY-172.67.174.92-0175-worker
+    address: 104.16.118.238,1
+    port: 2053
+    uuid: 869caccc-12af-4276-f458-366fa256f8a0
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.woRKeRS.dev
+    path: /qin15.rong1104.uk:2053/
+    tls: tls
+    sni: msw1.clash-sazan-eng.woRKeRS.dev
+    fp: edge
+    alpn: h2,http/1.1
+    fragment: tlshello,10-20,10-50
+  - configType: vmess
+    remarks: 30-🏁RELAY-141.101.114.134-0933-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 4612618c-24cd-4379-9924-cfdf3d61fa5a
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.WORkErs.dev
+    path: /opfr1.v2rayfree1.xyz:443/IYKLD53M
+    tls: tls
+    sni: msw1.clash-sazan-eng.WORkErs.dev
+    fp: randomized
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,30-80,10-50
+  - configType: vmess
+    remarks: 31-🏁RELAY-172.67.174.92-0187-worker
+    address: 104.16.118.238,1
+    port: 2053
+    uuid: f8d2fd33-ab8e-4004-f97d-10dde80af010
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.wORKErS.DeV
+    path: /qin14.rong1104.uk:2053/qin14
+    tls: tls
+    sni: msw1.clash-sazan-eng.wORKErS.DeV
+    fp: randomized
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,50-100,10-50
+  - configType: vmess
+    remarks: 32-🏁RELAY-104.18.12.15-2095-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 7a70e0f7-170d-4ab0-82a0-c40554bfb320
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.woRKErs.deV
+    path: /workers.dev:443/111111.online
+    tls: tls
+    sni: msw1.clash-sazan-eng.woRKErs.deV
+    fp: safari
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,10-50,10-50
+  - configType: vmess
+    remarks: 33-🏁RELAY-185.162.228.229-0897-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 56a2188b-2ab7-402c-b9b8-34847fdf0958
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.wORKeRs.DEV
+    path: /oplg1.zhujicn2.com:443/5QNROSRV
+    tls: tls
+    sni: msw1.clash-sazan-eng.wORKeRs.DEV
+    fp: edge
+    alpn: h3,h2
+    fragment: tlshello,30-80,10-50
+  - configType: vmess
+    remarks: 34-🇭🇰HK-156.226.123.36-6594-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 9d476be9-eca3-4561-9b56-6ff4ec1017ba
+    alterId: 4
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.WorkerS.DeV
+    path: /in1.3320.top:443/
+    tls: tls
+    sni: msw1.clash-sazan-eng.WorkerS.DeV
+    fp: ios
+    alpn: http/1.1
+    fragment: tlshello,20-50,20-50
+  - configType: vmess
+    remarks: 35-🇦🇺AU-103.224.212.211-1412-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 81d93f62-15a2-4994-adb9-0b5d906aac7e
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.worKErs.DEv
+    path: /20.72img.xyz:443/
+    tls: tls
+    sni: msw1.clash-sazan-eng.worKErs.DEv
+    fp: randomized
+    alpn: h3,h2
+    fragment: tlshello,50-100,10-50
+  - configType: vmess
+    remarks: 36-🏁RELAY-23.227.38.38-1536-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: c5a2d7b8-bf84-4f97-8577-b9b87f2baaf7
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.WORkers.DeV
+    path: /oplg1.cfcdn2.xyz:443/AUIKN8AU
+    tls: tls
+    sni: msw1.clash-sazan-eng.WORkers.DeV
+    fp: chrome
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,50-100,20-50
+  - configType: vmess
+    remarks: 37-🏁RELAY-203.30.190.192-1508-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 17b2a313-37a0-4945-a8e4-e63375506b4a
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.WOrkers.deV
+    path: /lg10.cfcdn1.xyz:443/A2DJOPFT
+    tls: tls
+    sni: msw1.clash-sazan-eng.WOrkers.deV
+    fp: safari
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,30-80,20-50
+  - configType: vmess
+    remarks: 38-🇹🇷TR-95.164.116.35-0740-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 9eb99213-f082-4b5e-87c1-0511798c7da2
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.WORkeRs.dEV
+    path: /tr-full.privateip.net:443/
+    tls: tls
+    sni: msw1.clash-sazan-eng.WORkeRs.dEV
+    fp: randomized
+    alpn: http/1.1
+    fragment: tlshello,30-80,10-20
+  - configType: vmess
+    remarks: 39-🇹🇼TW-220.130.80.179-6204-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: ceb8a7f4-a45b-48a7-8f8e-ca7124a5ebee
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.wOrkers.dEV
+    path: /v2ray2.udpgw.com:443/howdy
+    tls: ''
+    sni: msw1.clash-sazan-eng.wOrkers.dEV
+    fp: ios
+    alpn: h3,h2,http/1.1
+  - configType: vmess
+    remarks: 40-🏁RELAY-104.21.67.88-1903-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 3853a2ab-6bec-4503-89b9-d3cbcc6b69c9
+    alterId: 64
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.woRKerS.dEV
+    path: /hkd1.quickerlink.xyz:443/h6jr23x9h3lqiitg
+    tls: tls
+    sni: msw1.clash-sazan-eng.woRKerS.dEV
+    fp: randomized
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,30-80,10-50
+  - configType: vmess
+    remarks: 41-🏁RELAY-172.67.174.42-0143-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: bc864078-dcf3-4bf4-8dbf-ca9f200b56be
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.WoRKErs.dEv
+    path: /gwdef.sbs:443/linkws
+    tls: tls
+    sni: msw1.clash-sazan-eng.WoRKErs.dEv
+    fp: chrome
+    alpn: h2,http/1.1
+    fragment: tlshello,50-100,10-50
+  - configType: vmess
+    remarks: 42-🏁RELAY-203.24.108.9-0918-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 56a2188b-2ab7-402c-b9b8-34847fdf0958
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.wOrkERs.Dev
+    path: /oplg1.zhujicn2.com:443/5QNROSRV
+    tls: tls
+    sni: msw1.clash-sazan-eng.wOrkERs.Dev
+    fp: ios
+    alpn: h2
+    fragment: tlshello,30-80,10-20
+  - configType: vmess
+    remarks: 43-🏁RELAY-172.67.132.15-1517-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 18e5f40f-bda6-4c15-9334-e87cda6047af
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.wORKers.dEV
+    path: /ming2.kiwireich.com:443/ray
+    tls: tls
+    sni: msw1.clash-sazan-eng.wORKers.dEV
+    fp: android
+    alpn: http/1.1
+    fragment: tlshello,10-20,10-20
+  - configType: vmess
+    remarks: 44-🏁RELAY-173.245.49.10-6444-worker
+    address: 104.16.118.238,1
+    port: 8443
+    uuid: a6a37e04-5e81-44c9-be53-baa3ff46eb8b
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.WorKeRS.dev
+    path: /us-171-78.shoptunnel.live:8443/
+    tls: tls
+    sni: msw1.clash-sazan-eng.WorKeRS.dev
+    fp: android
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,30-80,10-50
+  - configType: vmess
+    remarks: 45-🏁RELAY-141.101.114.30-1418-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 40d496a6-ceeb-4096-baeb-4cc52b205621
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.WorKERs.DEv
+    path: /lg1.trump2023.us:443/ECTCJ0DF
+    tls: tls
+    sni: msw1.clash-sazan-eng.WorKERs.DEv
+    fp: chrome
+    alpn: h3,h2
+    fragment: tlshello,10-50,10-20
+  - configType: vmess
+    remarks: 46-🇺🇸 github.com/freefq - 美国Fastly全球Anycast节点 13-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 77848824-93b7-4b89-ffd0-e91afff406ce
+    alterId: '0'
+    security: auto
+    network: ws
+    type: none
+    host: msw1.clash-sazan-eng.WoRKers.dev
+    path: /zheshiscp.com:443/77848824
+    tls: tls
+    sni: msw1.clash-sazan-eng.WoRKers.dev
+    fp: chrome
+    alpn: h3,h2
+    fragment: tlshello,10-50,10-20
+  - configType: vmess
+    remarks: 47-🇮🇳 印度 v2rayfree.eu.org-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 716eded6-2201-4dbd-9d63-1638c9e8e677
+    alterId: '0'
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.woRKErS.dev
+    path: /pendar.onthewifi.com:443/
+    tls: tls
+    sni: msw1.clash-sazan-eng.woRKErS.dev
+    fp: randomized
+    alpn: h2
+    fragment: tlshello,10-50,20-50
+  - configType: vmess
+    remarks: 48-🇪🇺 欧洲(欢迎订阅Youtube破解资源君)-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 4850777c-1d10-4651-9936-27a2a500b9a2
+    alterId: '0'
+    security: auto
+    network: ws
+    type: none
+    host: msw1.clash-sazan-eng.woRKERs.Dev
+    path: /vps.qweasdzxc.ml:443/
+    tls: tls
+    sni: msw1.clash-sazan-eng.woRKERs.Dev
+    fp: chrome
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,10-20,10-20
+  - configType: vmess
+    remarks: 49-🇮🇳 github.com/freefq - 印度  10-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 716eded6-2201-4dbd-9d63-1638c9e8e677
+    alterId: '0'
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.wOrkERS.DeV
+    path: /pendar.onthewifi.com:443/
+    tls: tls
+    sni: msw1.clash-sazan-eng.wOrkERS.DeV
+    fp: randomized
+    alpn: h3,h2
+    fragment: tlshello,20-50,10-50
+  - configType: vmess
+    remarks: 50-🇸🇬 新加坡(欢迎订阅Youtube破解资源君)-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: ff382d09-becd-41cb-8e4f-3e256b27de47
+    alterId: '0'
+    security: auto
+    network: ws
+    type: none
+    host: msw1.clash-sazan-eng.woRKErS.dev
+    path: /sg3.31vpn.com:443/fastssh/ntmdq/6267584ee4988/
+    tls: tls
+    sni: msw1.clash-sazan-eng.woRKErS.dev
+    fp: ios
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,30-80,20-50
+  - configType: vmess
+    remarks: 51-🇺🇸 美国(欢迎订阅Youtube破解资源君)-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: dc0887b9-4c05-428c-adce-4235d1636341
+    alterId: '0'
+    security: auto
+    network: ws
+    type: none
+    host: msw1.clash-sazan-eng.wORkERS.dEV
+    path: /8.ezydfdd.com:443/qwe
+    tls: tls
+    sni: msw1.clash-sazan-eng.wORkERS.dEV
+    fp: chrome
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,10-50,10-50
+  - configType: vmess
+    remarks: 52-🇯🇵 日本(欢迎订阅Youtube破解资源君)-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 000fe881-b655-4212-b804-b00f9970d5aa
+    alterId: '0'
+    security: auto
+    network: ws
+    type: none
+    host: msw1.clash-sazan-eng.WoRkeRs.Dev
+    path: /v2ray.788644.xyz:443/happy
+    tls: tls
+    sni: msw1.clash-sazan-eng.WoRkeRs.Dev
+    fp: chrome
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,10-20,10-50
+  - configType: vmess
+    remarks: 53-🇺🇸 美国Fastly全球Anycast节点 13-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 77848824-93b7-4b89-ffd0-e91afff406ce
+    alterId: '0'
+    security: auto
+    network: ws
+    type: none
+    host: msw1.clash-sazan-eng.WORKErs.DEv
+    path: /zheshiscp.com:443/77848824
+    tls: tls
+    sni: msw1.clash-sazan-eng.WORKErs.DEv
+    fp: randomized
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,10-50,10-50
+  - configType: vmess
+    remarks: 54-🇮🇳 github.com/freefq - 印度  2-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 2ff97c6d-8557-42a4-b43f-19c77c5959ea
+    alterId: '0'
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.workers.dev
+    path: /irsoft.sytes.net:443/
+    tls: tls
+    sni: msw1.clash-sazan-eng.workers.dev
+    fp: chrome
+    alpn: h2,http/1.1
+    fragment: tlshello,50-100,10-50
+  - configType: vmess
+    remarks: 55-🇮🇳 印度  2-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 2ff97c6d-8557-42a4-b43f-19c77c5959ea
+    alterId: '0'
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.WORKeRS.dEv
+    path: /irsoft.sytes.net:443/
+    tls: tls
+    sni: msw1.clash-sazan-eng.WORKeRS.dEv
+    fp: randomized
+    alpn: http/1.1
+    fragment: tlshello,50-100,10-50
+  - configType: vmess
+    remarks: 56-🇮🇳 github.com/freefq - 印度  3-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 118287d2-e968-42e1-80d0-12fa2f5d38d6
+    alterId: '0'
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.WOrKErs.DEV
+    path: /sahand.serveminecraft.net:443/
+    tls: tls
+    sni: msw1.clash-sazan-eng.WOrKErs.DEV
+    fp: firefox
+    alpn: h2
+    fragment: tlshello,10-50,10-50
+  - configType: vmess
+    remarks: 57-🇮🇳 印度  10-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 716eded6-2201-4dbd-9d63-1638c9e8e677
+    alterId: '0'
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.woRKERS.DEv
+    path: /pendar.onthewifi.com:443/
+    tls: tls
+    sni: msw1.clash-sazan-eng.woRKERS.DEv
+    fp: ios
+    alpn: h3,h2
+    fragment: tlshello,50-100,10-50
+  - configType: vmess
+    remarks: 58-🇮🇳 印度  3-worker
+    address: 104.16.118.238,1
+    port: 443
+    uuid: 118287d2-e968-42e1-80d0-12fa2f5d38d6
+    alterId: '0'
+    security: auto
+    network: ws
+    type: auto
+    host: msw1.clash-sazan-eng.wOrkeRs.Dev
+    path: /sahand.serveminecraft.net:443/
+    tls: tls
+    sni: msw1.clash-sazan-eng.wOrkeRs.Dev
+    fp: randomized
+    alpn: h3,h2
+    fragment: tlshello,10-20,10-20
+  - configType: vmess
+    remarks: 59-🏁RELAY-172.64.194.98-9287
+    address: 172.64.194.98
+    port: 2095
+    uuid: 417d27fb-cb93-3bd8-9bf7-71cd91319821
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: ''
+    path: /hgcefomn
+    tls: ''
+    sni: ''
+    fp: android
+    alpn: http/1.1
+  - configType: vmess
+    remarks: 60-🇺🇸US-104.168.87.190-2174
+    address: 104.168.87.190
+    port: 1234
+    uuid: df2bc8f4-fc1a-4f4e-b0e5-fd49055b32a9
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: 104.168.87.190
+    path: /bb
+    tls: ''
+    sni: 104.168.87.190
+    fp: android
+    alpn: h3,h2,http/1.1
+  - configType: vmess
+    remarks: 61-🇦🇺AU-103.224.212.215-1158
+    address: vjp2.0bad.com
+    port: 443
+    uuid: 927094d3-d678-4763-8591-e240d0bcae87
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: vjp2.0bad.com
+    path: /chat
+    tls: tls
+    sni: vjp2.0bad.com
+    fp: ios
+    alpn: h2
+    fragment: tlshello,10-50,20-50
+  - configType: vmess
+    remarks: 62-🏁RELAY-104.21.237.68-0322
+    address: 104.21.237.68
+    port: 80
+    uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: a.prapt5.ir
+    path: /?ed=2048
+    tls: ''
+    sni: a.prapt5.ir
+    fp: android
+    alpn: h3,h2,http/1.1
+  - configType: vmess
+    remarks: 63-🇸🇬SG-8.222.174.108-0461
+    address: 8.222.174.108
+    port: 2082
+    uuid: 112ac36f-3f53-4e26-8371-d25c028e1b9a
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: s1c.v2.v001sss.xyz
+    path: /
+    tls: ''
+    sni: s1c.v2.v001sss.xyz
+    fp: randomized
+    alpn: h3,h2,http/1.1
+  - configType: vmess
+    remarks: 64-🇳🇱NL-13.73.229.250-1023
+    address: 13.73.229.250
+    port: 443
+    uuid: 4893ed3e-8a5f-48dc-aa1e-bbc2e67a065b
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: ''
+    path: /
+    tls: ''
+    sni: ''
+    fp: android
+    alpn: h2,http/1.1
+  - configType: vmess
+    remarks: 65-🏁RELAY-172.64.154.102-1373
+    address: 172.64.154.102
+    port: 443
+    uuid: 5f64fa65-7b14-49c5-954d-aa15c6bfcacd
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: clash6.ssr-free.xyz
+    path: /dongtaiwang.com
+    tls: tls
+    sni: clash6.ssr-free.xyz
+    fp: firefox
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,30-80,10-50
+  - configType: vmess
+    remarks: 66-🏁RELAY-104.19.155.92-1221
+    address: 104.19.155.92
+    port: 443
+    uuid: 52701795-3c3b-46b4-b7cf-c5978b3a4cf2
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: ''
+    path: /hdfyc5.achaemenidempireofpersia.uk/sNpuhb8v1rEIIa5hne1e
+    tls: tls
+    sni: ''
+    fp: ios
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,50-100,10-20
+  - configType: vmess
+    remarks: 67-🏁RELAY-104.18.213.21-1097
+    address: 104.18.213.21
+    port: 2087
+    uuid: 08ec6a06-8c15-4069-a781-8c725a30b7e7
+    alterId: 0
+    security: auto
+    network: grpc
+    type: auto
+    host: ''
+    path: ''
+    tls: tls
+    sni: ''
+    fp: randomized
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,50-100,10-50
+  - configType: vmess
+    remarks: 68-🇻🇳VN-103.187.168.180-1173
+    address: hn3.safepn.net
+    port: 80
+    uuid: ee76cecf-1219-42be-ae3f-6b8077e4cacc
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: hn3.safepn.net
+    path: /
+    tls: ''
+    sni: hn3.safepn.net
+    fp: android
+    alpn: h3,h2,http/1.1
+  - configType: vmess
+    remarks: 69-🏁RELAY-172.67.198.187-0153
+    address: hms04.xmivideo.cfd
+    port: 443
+    uuid: 93ea486a-bada-42a4-ac38-d088b320fa1e
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: xmivideo.cfd
+    path: /linkws
+    tls: tls
+    sni: xmivideo.cfd
+    fp: chrome
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,10-50,10-50
+  - configType: vmess
+    remarks: 70-🏁RELAY-172.67.204.84-0183
+    address: zula.ir
+    port: 443
+    uuid: 950db6aa-4926-4616-816e-ec0312dcb87b
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: jahfkjha.cfd
+    path: /linkws
+    tls: tls
+    sni: jahfkjha.cfd
+    fp: chrome
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,30-80,20-50
+  - configType: vmess
+    remarks: 71-🏁RELAY-172.67.207.26-0260
+    address: 172.67.207.26
+    port: 443
+    uuid: 76221bfb-e92f-4e80-81c5-6fe48f50ac0b
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: glweidf.sbs
+    path: /linkws
+    tls: tls
+    sni: glweidf.sbs
+    fp: chrome
+    alpn: h2
+    fragment: tlshello,50-100,20-50
+  - configType: vmess
+    remarks: 72-🇩🇪DE-23.158.56.229-3496
+    address: 23.158.56.229
+    port: 443
+    uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: ''
+    path: /linkvws
+    tls: tls
+    sni: ''
+    fp: safari
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,50-100,20-50
+  - configType: vmess
+    remarks: 73-🏁RELAY-104.17.176.171-1077
+    address: npmjs.com
+    port: 443
+    uuid: 52701795-3c3b-46b4-b7cf-c5978b3a4cf2
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: npmjs.com
+    path: /hdfyc5.achaemenidempireofpersia.uk/sNpuhb8v1rEIIa5hne1e
+    tls: tls
+    sni: npmjs.com
+    fp: edge
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,10-20,10-20
+  - configType: vmess
+    remarks: 74-🇩🇪DE-5.75.168.155-1178
+    address: 5.75.168.155
+    port: 443
+    uuid: 6b7cbc41-fb80-41a8-8eb6-b5bdb0e86147
+    alterId: 0
+    security: auto
+    network: http
+    type: auto
+    host: ''
+    path: ''
+    tls: ''
+    sni: ''
+    fp: randomized
+    alpn: h3,h2
+  - configType: vmess
+    remarks: 75-🇭🇰HK-8.218.85.128-3538
+    address: 8.218.85.128
+    port: 80
+    uuid: 5d815dc6-a795-44ff-aeb6-7ee16a7a1c57
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: tw1.renwox.xyz
+    path: /needay?ed=2048
+    tls: ''
+    sni: tw1.renwox.xyz
+    fp: ios
+    alpn: h3,h2,http/1.1
+  - configType: vmess
+    remarks: 76-🇦🇺AU-103.224.212.215-1193
+    address: vus5.0bad.com
+    port: 443
+    uuid: 927094d3-d678-4763-8591-e240d0bcae87
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: vus5.0bad.com
+    path: /chat
+    tls: tls
+    sni: vus5.0bad.com
+    fp: android
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,50-100,20-50
+  - configType: vmess
+    remarks: 77-🏁RELAY-104.19.250.15-1003
+    address: 104.19.250.15
+    port: 2052
+    uuid: aec82fa6-ab70-4d0a-e7fb-422ef729d961
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: ''
+    path: /
+    tls: ''
+    sni: ''
+    fp: randomized
+    alpn: h2
+  - configType: vmess
+    remarks: 78-🇱🇺LU-202.78.162.5-1302
+    address: 202.78.162.5
+    port: 443
+    uuid: 716eded6-2201-4dbd-9d63-1638c9e8e677
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: pendar.onthewifi.com
+    path: /
+    tls: tls
+    sni: pendar.onthewifi.com
+    fp: randomized
+    alpn: h2
+    fragment: tlshello,10-50,10-20
+  - configType: vmess
+    remarks: 79-🏁RELAY-104.19.27.44-1270
+    address: 104.19.27.44
+    port: 2082
+    uuid: 82c3f0a2-fb48-352c-9ab9-3fc93d8887f1
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: 100.100.17.27.db-link02.top
+    path: /dabai.in442719
+    tls: ''
+    sni: data-us-1.db-link02.top
+    fp: safari
+    alpn: h3,h2,http/1.1
+  - configType: vmess
+    remarks: 80-🏁RELAY-172.67.79.117-1182
+    address: 172.67.79.117
+    port: 443
+    uuid: bd014532-1f8b-4d33-b79d-50131d8d4633
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: www.998808.xyz
+    path: /vbje5ytgwfgdrhe
+    tls: tls
+    sni: www.998808.xyz
+    fp: ios
+    alpn: h2,http/1.1
+    fragment: tlshello,20-50,20-50
+  - configType: vmess
+    remarks: 81-🏁RELAY-162.159.13.8-1127
+    address: 162.159.13.8
+    port: 443
+    uuid: 1F7C900A-6AD7-41CF-A37E-85873E566C40
+    alterId: 0
+    security: auto
+    network: ws
+    type: auto
+    host: Kansas.gafn.online
+    path: /speedtest
+    tls: tls
+    sni: Kansas.gafn.online
+    fp: chrome
+    alpn: h3,h2,http/1.1
+    fragment: tlshello,50-100,10-20
+  - configType: vmess
+    remarks: 82-🇺🇸 美国 CloudFlare节点
+    address: 104.19.40.84
+    port: 8880
+    uuid: 57e0cb4d-eae5-48ec-8091-149dc2b309e0
+    alterId: '0'
+    security: auto
+    network: ws
+    type: none
+    host: uk.moss.network
+    path: /d/65dd503.TG.WangCai2.WangCai_8:107690
+    tls: ''
+    sni: uk.moss.network
+    fp: edge
+    alpn: h2
+  - configType: vmess
+    remarks: 83-🇺🇸 美国(欢迎订阅Youtube破解资源君)
+    address: 104.16.147.69
+    port: 443
+    uuid: c14d7a06-9e86-4dcb-8c0d-ade3d3361bad
+    alterId: '0'
+    security: auto
+    network: ws
+    type: none
+    host: yzjd03.7595333.workers.dev
+    path: /
+    tls: tls
+    sni: yzjd03.7595333.workers.dev
+    fp: ios
+    alpn: h2
+    fragment: tlshello,30-80,10-20
+  - configType: vmess
+    remarks: 84-🇺🇸 美国(欢迎订阅Youtube破解资源君)
+    address: 149.248.1.76
+    port: 27266
+    uuid: 1a79bde9-ac7a-4cd9-899c-6dbbe35e16dd
+    alterId: '0'
+    security: auto
+    network: ws
+    type: none
+    host: 149.248.1.76
+    path: /QEc5C9RG/
+    tls: ''
+    sni: 149.248.1.76
+    fp: randomized
+    alpn: http/1.1
+  - configType: vmess
+    remarks: 85-🇺🇸 _US_美国->🇩🇪_DE_德国
+    address: 104.21.225.99
+    port: 80
+    uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+    alterId: '0'
+    security: auto
+    network: ws
+    type: none
+    host: a.prapt5.ir
+    path: /
+    tls: ''
+    sni: a.prapt5.ir
+    fp: safari
+    alpn: h2
+  - configType: vmess
+    remarks: 86-🇺🇸 美国(欢迎订阅Youtube破解资源君)
+    address: 192.18.142.28
+    port: 55051
+    uuid: 3f7c0994-0b8c-49b7-e4d1-5af10d554c33
+    alterId: '0'
+    security: auto
+    network: tcp
+    type: none
+    host: 192.18.142.28
+    path: /
+    tls: ''
+    sni: 192.18.142.28
+    fp: chrome
+    alpn: h3,h2,http/1.1
+  - configType: vmess
+    remarks: 87-🇺🇸 _US_美国->🇩🇪_DE_德国
+    address: 104.21.227.36
+    port: 80
+    uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+    alterId: '0'
+    security: auto
+    network: ws
+    type: none
+    host: a.prapt5.ir
+    path: /
+    tls: ''
+    sni: a.prapt5.ir
+    fp: chrome
+    alpn: h2
+  - configType: vmess
+    remarks: 88-🇺🇸 _US_美国->🇩🇪_DE_德国
+    address: 104.21.225.64
+    port: 80
+    uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+    alterId: '0'
+    security: auto
+    network: ws
+    type: none
+    host: a.prapt5.ir
+    path: /
+    tls: ''
+    sni: a.prapt5.ir
+    fp: chrome
+    alpn: h3,h2
+  - configType: vmess
+    remarks: 89-🇺🇸 _US_美国->🇩🇪_DE_德国
+    address: 104.21.225.123
+    port: 80
+    uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+    alterId: '0'
+    security: auto
+    network: ws
+    type: none
+    host: a.prapt5.ir
+    path: /
+    tls: ''
+    sni: a.prapt5.ir
+    fp: chrome
+    alpn: h2,http/1.1
+  - configType: vmess
+    remarks: 90-🇭🇰 香港(欢迎订阅Youtube破解资源君)
+    address: hkaz3.xmrth-node.xyz
+    port: 12567
+    uuid: ebb8920a-63c4-368f-b3fd-3794f4fa1c98
+    alterId: '2'
+    security: auto
+    network: ws
+    type: none
+    host: hkaz3.xmrth-node.xyz
+    path: /index
+    tls: ''
+    sni: hkaz3.xmrth-node.xyz
+    fp: chrome
+    alpn: h2
+  - configType: vmess
+    remarks: 91-🇺🇸 美国(欢迎订阅Youtube破解资源君)
+    address: hk3.fdns.cloudlink123.com
+    port: 80
+    uuid: 3f6006ca-e8ba-49d5-af9d-f4806dd36e09
+    alterId: '0'
+    security: auto
+    network: ws
+    type: none
+    host: hk3.fdns.cloudlink123.com
+    path: /
+    tls: ''
+    sni: hk3.fdns.cloudlink123.com
+    fp: safari
+    alpn: h3,h2,http/1.1
+  - configType: vmess
+    remarks: 92-🇺🇸 _US_美国->🇩🇪_DE_德国
+    address: 104.21.225.223
+    port: 80
+    uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+    alterId: '0'
+    security: auto
+    network: ws
+    type: none
+    host: a.prapt5.ir
+    path: /?ed=2048
+    tls: ''
+    sni: a.prapt5.ir
+    fp: chrome
+    alpn: h2
+  - configType: vmess
+    remarks: 93-🇯🇵 日本(欢迎订阅Youtube破解资源君)
+    address: 140.238.48.194
+    port: 8888
+    uuid: 24f1dfad-1267-4297-8e88-0e9b8ef47e47
+    alterId: '0'
+    security: auto
+    network: tcp
+    type: none
+    host: 140.238.48.194
+    path: /
+    tls: ''
+    sni: 140.238.48.194
+    fp: chrome
+    alpn: h3,h2,http/1.1
+  - configType: vmess
+    remarks: 94-🇺🇸 _US_美国->🇩🇪_DE_德国
+    address: 104.21.225.158
+    port: 80
+    uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+    alterId: '0'
+    security: auto
+    network: ws
+    type: none
+    host: a.prapt5.ir
+    path: /
+    tls: ''
+    sni: a.prapt5.ir
+    fp: chrome
+    alpn: h3,h2
+  - configType: vmess
+    remarks: 95-🇺🇸 _US_美国->🇩🇪_DE_德国
+    address: 104.21.230.30
+    port: 80
+    uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+    alterId: '0'
+    security: auto
+    network: ws
+    type: none
+    host: a.prapt5.ir
+    path: /?ed=2048
+    tls: ''
+    sni: a.prapt5.ir
+    fp: android
+    alpn: h3,h2,http/1.1
+  - configType: vmess
+    remarks: 96-🇺🇸 _US_美国->🇩🇪_DE_德国
+    address: 104.21.232.64
+    port: 80
+    uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+    alterId: '0'
+    security: auto
+    network: ws
+    type: none
+    host: a.prapt5.ir
+    path: /?ed=2048
+    tls: ''
+    sni: a.prapt5.ir
+    fp: randomized
+    alpn: h3,h2,http/1.1
+  - configType: vmess
+    remarks: 97-🇺🇸 _US_美国->🇩🇪_DE_德国
+    address: 104.21.225.94
+    port: 80
+    uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+    alterId: '0'
+    security: auto
+    network: ws
+    type: none
+    host: a.prapt5.ir
+    path: /
+    tls: ''
+    sni: a.prapt5.ir
+    fp: safari
+    alpn: h3,h2
 proxy-groups:
-  - name: MANUAL
+  - name: All
     type: select
     proxies:
-      - URL-TEST
-      - FALLBACK
-      - 'رایگان | VMESS | @V2rayCollectorDonate | US🇺🇸 | 0️⃣1️⃣ | 0️⃣1️⃣'
-      - 'رایگان | VMESS | @V2rayNGn | GB🇬🇧 | 0️⃣1️⃣ | 0️⃣2️⃣'
-      - 'رایگان | VMESS | @DeamNet_Proxy | US🇺🇸 | 0️⃣1️⃣ | 0️⃣3️⃣'
-      - 'رایگان | VMESS | @oneclickvpnkeys | BR🇧🇷 | 0️⃣1️⃣ | 0️⃣4️⃣'
-      - 'رایگان | VMESS | @oneclickvpnkeys | BR🇧🇷 | 0️⃣2️⃣ | 0️⃣5️⃣'
-      - 'رایگان | VMESS | @oneclickvpnkeys | US🇺🇸 | 0️⃣3️⃣ | 0️⃣6️⃣'
-      - 'رایگان | VMESS | @oneclickvpnkeys | US🇺🇸 | 0️⃣5️⃣ | 0️⃣8️⃣'
-      - 'رایگان | VMESS | @oneclickvpnkeys | US🇺🇸 | 0️⃣6️⃣ | 0️⃣9️⃣'
-      - 'رایگان | VMESS | @oneclickvpnkeys | US🇺🇸 | 0️⃣7️⃣ | 1️⃣0️⃣'
-      - 'رایگان | VMESS | @prrofile_purple | US🇺🇸 | 0️⃣1️⃣ | 1️⃣1️⃣'
-      - 'رایگان | VMESS | @prrofile_purple | US🇺🇸 | 0️⃣2️⃣ | 1️⃣2️⃣'
-      - 'رایگان | VMESS | @prrofile_purple | US🇺🇸 | 0️⃣5️⃣ | 1️⃣3️⃣'
-      - 'رایگان | VMESS | @ShadowProxy66 | US🇺🇸 | 0️⃣1️⃣ | 1️⃣4️⃣'
-      - 'رایگان | VMESS | @ShadowProxy66 | NO🇳🇴 | 0️⃣2️⃣ | 1️⃣5️⃣'
-      - 'رایگان | VMESS | @v2ray_swhil | US🇺🇸 | 0️⃣3️⃣ | 1️⃣6️⃣'
-      - 'رایگان | VMESS | @v2ray1_ng | US🇺🇸 | 0️⃣1️⃣ | 1️⃣7️⃣'
-      - 'رایگان | VMESS | @vless_vmess | US🇺🇸 | 0️⃣1️⃣ | 1️⃣8️⃣'
-      - 'رایگان | VMESS | @DailyV2RY | US🇺🇸 | 0️⃣1️⃣ | 1️⃣9️⃣'
-      - 'رایگان | VMESS | @yaney_01 | US🇺🇸 | 0️⃣1️⃣ | 2️⃣0️⃣'
-      - 'رایگان | VMESS | @yaney_01 | US🇺🇸 | 0️⃣2️⃣ | 2️⃣1️⃣'
-      - 'رایگان | VMESS | @yaney_01 | US🇺🇸 | 0️⃣3️⃣ | 2️⃣2️⃣'
-      - 'رایگان | VMESS | @yaney_01 | US🇺🇸 | 0️⃣4️⃣ | 2️⃣3️⃣'
-      - 'رایگان | VMESS | @Hope_Net | US🇺🇸 | 0️⃣1️⃣ | 2️⃣6️⃣'
-      - 'رایگان | VMESS | @Hope_Net | IE🇮🇪 | 0️⃣2️⃣ | 2️⃣7️⃣'
-      - 'رایگان | VMESS | @Hope_Net | US🇺🇸 | 0️⃣4️⃣ | 2️⃣9️⃣'
-      - 'رایگان | VMESS | @v2Line | US🇺🇸 | 0️⃣2️⃣ | 3️⃣1️⃣'
-      - 'رایگان | VMESS | @FAKEOFTVC | CZ🇨🇿 | 0️⃣1️⃣ | 3️⃣3️⃣'
-      - 'رایگان | VMESS | @kingofilter | US🇺🇸 | 0️⃣1️⃣ | 3️⃣4️⃣'
-      - 'رایگان | VMESS | @ROMAX_VPN | US🇺🇸 | 0️⃣1️⃣ | 3️⃣5️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | DE🇩🇪 | 0️⃣1️⃣ | 3️⃣6️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | SE🇸🇪 | 0️⃣2️⃣ | 3️⃣7️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | SE🇸🇪 | 0️⃣3️⃣ | 3️⃣8️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | IE🇮🇪 | 0️⃣4️⃣ | 3️⃣9️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | IE🇮🇪 | 0️⃣5️⃣ | 4️⃣0️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | GB🇬🇧 | 0️⃣6️⃣ | 4️⃣1️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | GB🇬🇧 | 0️⃣7️⃣ | 4️⃣2️⃣'
-      - 'رایگان | TROJAN | @DirectVPN | US🇺🇸 | 0️⃣1️⃣ | 4️⃣3️⃣'
-      - 'رایگان | TROJAN | @proxyymeliii | NL🇳🇱 | 0️⃣1️⃣ | 4️⃣4️⃣'
-      - 'رایگان | TROJAN | @kingofilter | US🇺🇸 | 0️⃣1️⃣ | 4️⃣5️⃣'
-      - 'رایگان | SS | @azadi_az_inja_migzare | AT🇦🇹 | 0️⃣1️⃣ | 4️⃣6️⃣'
-      - 'رایگان | SS | @azadi_az_inja_migzare | DE🇩🇪 | 0️⃣2️⃣ | 4️⃣7️⃣'
-      - 'رایگان | SS | @azadi_az_inja_migzare | CA🇨🇦 | 0️⃣3️⃣ | 4️⃣8️⃣'
-      - 'رایگان | SS | @azadi_az_inja_migzare | FR🇫🇷 | 0️⃣4️⃣ | 4️⃣9️⃣'
-      - 'رایگان | SS | @azadi_az_inja_migzare | US🇺🇸 | 0️⃣5️⃣ | 5️⃣0️⃣'
-      - 'رایگان | SS | @azadi_az_inja_migzare | GB🇬🇧 | 0️⃣6️⃣ | 5️⃣1️⃣'
-      - 'رایگان | SS | @VmessProtocol | GB🇬🇧 | 0️⃣1️⃣ | 5️⃣2️⃣'
-      - 'رایگان | SS | @VmessProtocol | GB🇬🇧 | 0️⃣2️⃣ | 5️⃣3️⃣'
-      - 'رایگان | SS | @VmessProtocol | GB🇬🇧 | 0️⃣3️⃣ | 5️⃣4️⃣'
-      - 'رایگان | SS | @VmessProtocol | US🇺🇸 | 0️⃣6️⃣ | 5️⃣5️⃣'
-      - 'رایگان | SS | @VmessProtocol | DE🇩🇪 | 0️⃣7️⃣ | 5️⃣6️⃣'
-      - 'رایگان | SS | @OutlineVpnOfficial | PL🇵🇱 | 0️⃣1️⃣ | 5️⃣7️⃣'
-      - 'رایگان | SS | @OutlineVpnOfficial | DE🇩🇪 | 0️⃣2️⃣ | 5️⃣8️⃣'
-      - 'رایگان | SS | @OutlineVpnOfficial | AT🇦🇹 | 0️⃣3️⃣ | 5️⃣9️⃣'
-      - 'رایگان | SS | @OutlineVpnOfficial | RU🇷🇺 | 0️⃣4️⃣ | 6️⃣0️⃣'
-      - 'رایگان | SS | @OutlineVpnOfficial | SE🇸🇪 | 0️⃣5️⃣ | 6️⃣1️⃣'
-      - 'رایگان | SS | @kingofilter | AE🇦🇪 | 0️⃣1️⃣ | 6️⃣2️⃣'
-      - 'رایگان | SS | @ROMAX_VPN | US🇺🇸 | 0️⃣1️⃣ | 6️⃣3️⃣'
-      - 'رایگان | SS | @ROMAX_VPN | CA🇨🇦 | 0️⃣2️⃣ | 6️⃣4️⃣'
-  - name: URL-TEST
+      - All - UrlTest
+      - All - Fallback
+      - All - LoadBalance(ch)
+      - All - LoadBalance(rr)
+      - Original
+      - Worker
+  - name: All - UrlTest
     type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 60
-    tolerance: 50
+    url: http://clients3.google.com/generate_204
+    interval: 600
     proxies:
-      - 'رایگان | VMESS | @V2rayCollectorDonate | US🇺🇸 | 0️⃣1️⃣ | 0️⃣1️⃣'
-      - 'رایگان | VMESS | @V2rayNGn | GB🇬🇧 | 0️⃣1️⃣ | 0️⃣2️⃣'
-      - 'رایگان | VMESS | @DeamNet_Proxy | US🇺🇸 | 0️⃣1️⃣ | 0️⃣3️⃣'
-      - 'رایگان | VMESS | @oneclickvpnkeys | BR🇧🇷 | 0️⃣1️⃣ | 0️⃣4️⃣'
-      - 'رایگان | VMESS | @oneclickvpnkeys | BR🇧🇷 | 0️⃣2️⃣ | 0️⃣5️⃣'
-      - 'رایگان | VMESS | @oneclickvpnkeys | US🇺🇸 | 0️⃣3️⃣ | 0️⃣6️⃣'
-      - 'رایگان | VMESS | @oneclickvpnkeys | US🇺🇸 | 0️⃣5️⃣ | 0️⃣8️⃣'
-      - 'رایگان | VMESS | @oneclickvpnkeys | US🇺🇸 | 0️⃣6️⃣ | 0️⃣9️⃣'
-      - 'رایگان | VMESS | @oneclickvpnkeys | US🇺🇸 | 0️⃣7️⃣ | 1️⃣0️⃣'
-      - 'رایگان | VMESS | @prrofile_purple | US🇺🇸 | 0️⃣1️⃣ | 1️⃣1️⃣'
-      - 'رایگان | VMESS | @prrofile_purple | US🇺🇸 | 0️⃣2️⃣ | 1️⃣2️⃣'
-      - 'رایگان | VMESS | @prrofile_purple | US🇺🇸 | 0️⃣5️⃣ | 1️⃣3️⃣'
-      - 'رایگان | VMESS | @ShadowProxy66 | US🇺🇸 | 0️⃣1️⃣ | 1️⃣4️⃣'
-      - 'رایگان | VMESS | @ShadowProxy66 | NO🇳🇴 | 0️⃣2️⃣ | 1️⃣5️⃣'
-      - 'رایگان | VMESS | @v2ray_swhil | US🇺🇸 | 0️⃣3️⃣ | 1️⃣6️⃣'
-      - 'رایگان | VMESS | @v2ray1_ng | US🇺🇸 | 0️⃣1️⃣ | 1️⃣7️⃣'
-      - 'رایگان | VMESS | @vless_vmess | US🇺🇸 | 0️⃣1️⃣ | 1️⃣8️⃣'
-      - 'رایگان | VMESS | @DailyV2RY | US🇺🇸 | 0️⃣1️⃣ | 1️⃣9️⃣'
-      - 'رایگان | VMESS | @yaney_01 | US🇺🇸 | 0️⃣1️⃣ | 2️⃣0️⃣'
-      - 'رایگان | VMESS | @yaney_01 | US🇺🇸 | 0️⃣2️⃣ | 2️⃣1️⃣'
-      - 'رایگان | VMESS | @yaney_01 | US🇺🇸 | 0️⃣3️⃣ | 2️⃣2️⃣'
-      - 'رایگان | VMESS | @yaney_01 | US🇺🇸 | 0️⃣4️⃣ | 2️⃣3️⃣'
-      - 'رایگان | VMESS | @Hope_Net | US🇺🇸 | 0️⃣1️⃣ | 2️⃣6️⃣'
-      - 'رایگان | VMESS | @Hope_Net | IE🇮🇪 | 0️⃣2️⃣ | 2️⃣7️⃣'
-      - 'رایگان | VMESS | @Hope_Net | US🇺🇸 | 0️⃣4️⃣ | 2️⃣9️⃣'
-      - 'رایگان | VMESS | @v2Line | US🇺🇸 | 0️⃣2️⃣ | 3️⃣1️⃣'
-      - 'رایگان | VMESS | @FAKEOFTVC | CZ🇨🇿 | 0️⃣1️⃣ | 3️⃣3️⃣'
-      - 'رایگان | VMESS | @kingofilter | US🇺🇸 | 0️⃣1️⃣ | 3️⃣4️⃣'
-      - 'رایگان | VMESS | @ROMAX_VPN | US🇺🇸 | 0️⃣1️⃣ | 3️⃣5️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | DE🇩🇪 | 0️⃣1️⃣ | 3️⃣6️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | SE🇸🇪 | 0️⃣2️⃣ | 3️⃣7️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | SE🇸🇪 | 0️⃣3️⃣ | 3️⃣8️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | IE🇮🇪 | 0️⃣4️⃣ | 3️⃣9️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | IE🇮🇪 | 0️⃣5️⃣ | 4️⃣0️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | GB🇬🇧 | 0️⃣6️⃣ | 4️⃣1️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | GB🇬🇧 | 0️⃣7️⃣ | 4️⃣2️⃣'
-      - 'رایگان | TROJAN | @DirectVPN | US🇺🇸 | 0️⃣1️⃣ | 4️⃣3️⃣'
-      - 'رایگان | TROJAN | @proxyymeliii | NL🇳🇱 | 0️⃣1️⃣ | 4️⃣4️⃣'
-      - 'رایگان | TROJAN | @kingofilter | US🇺🇸 | 0️⃣1️⃣ | 4️⃣5️⃣'
-      - 'رایگان | SS | @azadi_az_inja_migzare | AT🇦🇹 | 0️⃣1️⃣ | 4️⃣6️⃣'
-      - 'رایگان | SS | @azadi_az_inja_migzare | DE🇩🇪 | 0️⃣2️⃣ | 4️⃣7️⃣'
-      - 'رایگان | SS | @azadi_az_inja_migzare | CA🇨🇦 | 0️⃣3️⃣ | 4️⃣8️⃣'
-      - 'رایگان | SS | @azadi_az_inja_migzare | FR🇫🇷 | 0️⃣4️⃣ | 4️⃣9️⃣'
-      - 'رایگان | SS | @azadi_az_inja_migzare | US🇺🇸 | 0️⃣5️⃣ | 5️⃣0️⃣'
-      - 'رایگان | SS | @azadi_az_inja_migzare | GB🇬🇧 | 0️⃣6️⃣ | 5️⃣1️⃣'
-      - 'رایگان | SS | @VmessProtocol | GB🇬🇧 | 0️⃣1️⃣ | 5️⃣2️⃣'
-      - 'رایگان | SS | @VmessProtocol | GB🇬🇧 | 0️⃣2️⃣ | 5️⃣3️⃣'
-      - 'رایگان | SS | @VmessProtocol | GB🇬🇧 | 0️⃣3️⃣ | 5️⃣4️⃣'
-      - 'رایگان | SS | @VmessProtocol | US🇺🇸 | 0️⃣6️⃣ | 5️⃣5️⃣'
-      - 'رایگان | SS | @VmessProtocol | DE🇩🇪 | 0️⃣7️⃣ | 5️⃣6️⃣'
-      - 'رایگان | SS | @OutlineVpnOfficial | PL🇵🇱 | 0️⃣1️⃣ | 5️⃣7️⃣'
-      - 'رایگان | SS | @OutlineVpnOfficial | DE🇩🇪 | 0️⃣2️⃣ | 5️⃣8️⃣'
-      - 'رایگان | SS | @OutlineVpnOfficial | AT🇦🇹 | 0️⃣3️⃣ | 5️⃣9️⃣'
-      - 'رایگان | SS | @OutlineVpnOfficial | RU🇷🇺 | 0️⃣4️⃣ | 6️⃣0️⃣'
-      - 'رایگان | SS | @OutlineVpnOfficial | SE🇸🇪 | 0️⃣5️⃣ | 6️⃣1️⃣'
-      - 'رایگان | SS | @kingofilter | AE🇦🇪 | 0️⃣1️⃣ | 6️⃣2️⃣'
-      - 'رایگان | SS | @ROMAX_VPN | US🇺🇸 | 0️⃣1️⃣ | 6️⃣3️⃣'
-      - 'رایگان | SS | @ROMAX_VPN | CA🇨🇦 | 0️⃣2️⃣ | 6️⃣4️⃣'
-  - name: FALLBACK
+      - Original
+      - Worker
+  - name: All - Fallback
     type: fallback
-    url: http://www.gstatic.com/generate_204
-    interval: 60
+    url: http://clients3.google.com/generate_204
+    interval: 600
     proxies:
-      - 'رایگان | VMESS | @V2rayCollectorDonate | US🇺🇸 | 0️⃣1️⃣ | 0️⃣1️⃣'
-      - 'رایگان | VMESS | @V2rayNGn | GB🇬🇧 | 0️⃣1️⃣ | 0️⃣2️⃣'
-      - 'رایگان | VMESS | @DeamNet_Proxy | US🇺🇸 | 0️⃣1️⃣ | 0️⃣3️⃣'
-      - 'رایگان | VMESS | @oneclickvpnkeys | BR🇧🇷 | 0️⃣1️⃣ | 0️⃣4️⃣'
-      - 'رایگان | VMESS | @oneclickvpnkeys | BR🇧🇷 | 0️⃣2️⃣ | 0️⃣5️⃣'
-      - 'رایگان | VMESS | @oneclickvpnkeys | US🇺🇸 | 0️⃣3️⃣ | 0️⃣6️⃣'
-      - 'رایگان | VMESS | @oneclickvpnkeys | US🇺🇸 | 0️⃣5️⃣ | 0️⃣8️⃣'
-      - 'رایگان | VMESS | @oneclickvpnkeys | US🇺🇸 | 0️⃣6️⃣ | 0️⃣9️⃣'
-      - 'رایگان | VMESS | @oneclickvpnkeys | US🇺🇸 | 0️⃣7️⃣ | 1️⃣0️⃣'
-      - 'رایگان | VMESS | @prrofile_purple | US🇺🇸 | 0️⃣1️⃣ | 1️⃣1️⃣'
-      - 'رایگان | VMESS | @prrofile_purple | US🇺🇸 | 0️⃣2️⃣ | 1️⃣2️⃣'
-      - 'رایگان | VMESS | @prrofile_purple | US🇺🇸 | 0️⃣5️⃣ | 1️⃣3️⃣'
-      - 'رایگان | VMESS | @ShadowProxy66 | US🇺🇸 | 0️⃣1️⃣ | 1️⃣4️⃣'
-      - 'رایگان | VMESS | @ShadowProxy66 | NO🇳🇴 | 0️⃣2️⃣ | 1️⃣5️⃣'
-      - 'رایگان | VMESS | @v2ray_swhil | US🇺🇸 | 0️⃣3️⃣ | 1️⃣6️⃣'
-      - 'رایگان | VMESS | @v2ray1_ng | US🇺🇸 | 0️⃣1️⃣ | 1️⃣7️⃣'
-      - 'رایگان | VMESS | @vless_vmess | US🇺🇸 | 0️⃣1️⃣ | 1️⃣8️⃣'
-      - 'رایگان | VMESS | @DailyV2RY | US🇺🇸 | 0️⃣1️⃣ | 1️⃣9️⃣'
-      - 'رایگان | VMESS | @yaney_01 | US🇺🇸 | 0️⃣1️⃣ | 2️⃣0️⃣'
-      - 'رایگان | VMESS | @yaney_01 | US🇺🇸 | 0️⃣2️⃣ | 2️⃣1️⃣'
-      - 'رایگان | VMESS | @yaney_01 | US🇺🇸 | 0️⃣3️⃣ | 2️⃣2️⃣'
-      - 'رایگان | VMESS | @yaney_01 | US🇺🇸 | 0️⃣4️⃣ | 2️⃣3️⃣'
-      - 'رایگان | VMESS | @Hope_Net | US🇺🇸 | 0️⃣1️⃣ | 2️⃣6️⃣'
-      - 'رایگان | VMESS | @Hope_Net | IE🇮🇪 | 0️⃣2️⃣ | 2️⃣7️⃣'
-      - 'رایگان | VMESS | @Hope_Net | US🇺🇸 | 0️⃣4️⃣ | 2️⃣9️⃣'
-      - 'رایگان | VMESS | @v2Line | US🇺🇸 | 0️⃣2️⃣ | 3️⃣1️⃣'
-      - 'رایگان | VMESS | @FAKEOFTVC | CZ🇨🇿 | 0️⃣1️⃣ | 3️⃣3️⃣'
-      - 'رایگان | VMESS | @kingofilter | US🇺🇸 | 0️⃣1️⃣ | 3️⃣4️⃣'
-      - 'رایگان | VMESS | @ROMAX_VPN | US🇺🇸 | 0️⃣1️⃣ | 3️⃣5️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | DE🇩🇪 | 0️⃣1️⃣ | 3️⃣6️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | SE🇸🇪 | 0️⃣2️⃣ | 3️⃣7️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | SE🇸🇪 | 0️⃣3️⃣ | 3️⃣8️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | IE🇮🇪 | 0️⃣4️⃣ | 3️⃣9️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | IE🇮🇪 | 0️⃣5️⃣ | 4️⃣0️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | GB🇬🇧 | 0️⃣6️⃣ | 4️⃣1️⃣'
-      - 'رایگان | TROJAN | @PrivateVPNs | GB🇬🇧 | 0️⃣7️⃣ | 4️⃣2️⃣'
-      - 'رایگان | TROJAN | @DirectVPN | US🇺🇸 | 0️⃣1️⃣ | 4️⃣3️⃣'
-      - 'رایگان | TROJAN | @proxyymeliii | NL🇳🇱 | 0️⃣1️⃣ | 4️⃣4️⃣'
-      - 'رایگان | TROJAN | @kingofilter | US🇺🇸 | 0️⃣1️⃣ | 4️⃣5️⃣'
-      - 'رایگان | SS | @azadi_az_inja_migzare | AT🇦🇹 | 0️⃣1️⃣ | 4️⃣6️⃣'
-      - 'رایگان | SS | @azadi_az_inja_migzare | DE🇩🇪 | 0️⃣2️⃣ | 4️⃣7️⃣'
-      - 'رایگان | SS | @azadi_az_inja_migzare | CA🇨🇦 | 0️⃣3️⃣ | 4️⃣8️⃣'
-      - 'رایگان | SS | @azadi_az_inja_migzare | FR🇫🇷 | 0️⃣4️⃣ | 4️⃣9️⃣'
-      - 'رایگان | SS | @azadi_az_inja_migzare | US🇺🇸 | 0️⃣5️⃣ | 5️⃣0️⃣'
-      - 'رایگان | SS | @azadi_az_inja_migzare | GB🇬🇧 | 0️⃣6️⃣ | 5️⃣1️⃣'
-      - 'رایگان | SS | @VmessProtocol | GB🇬🇧 | 0️⃣1️⃣ | 5️⃣2️⃣'
-      - 'رایگان | SS | @VmessProtocol | GB🇬🇧 | 0️⃣2️⃣ | 5️⃣3️⃣'
-      - 'رایگان | SS | @VmessProtocol | GB🇬🇧 | 0️⃣3️⃣ | 5️⃣4️⃣'
-      - 'رایگان | SS | @VmessProtocol | US🇺🇸 | 0️⃣6️⃣ | 5️⃣5️⃣'
-      - 'رایگان | SS | @VmessProtocol | DE🇩🇪 | 0️⃣7️⃣ | 5️⃣6️⃣'
-      - 'رایگان | SS | @OutlineVpnOfficial | PL🇵🇱 | 0️⃣1️⃣ | 5️⃣7️⃣'
-      - 'رایگان | SS | @OutlineVpnOfficial | DE🇩🇪 | 0️⃣2️⃣ | 5️⃣8️⃣'
-      - 'رایگان | SS | @OutlineVpnOfficial | AT🇦🇹 | 0️⃣3️⃣ | 5️⃣9️⃣'
-      - 'رایگان | SS | @OutlineVpnOfficial | RU🇷🇺 | 0️⃣4️⃣ | 6️⃣0️⃣'
-      - 'رایگان | SS | @OutlineVpnOfficial | SE🇸🇪 | 0️⃣5️⃣ | 6️⃣1️⃣'
-      - 'رایگان | SS | @kingofilter | AE🇦🇪 | 0️⃣1️⃣ | 6️⃣2️⃣'
-      - 'رایگان | SS | @ROMAX_VPN | US🇺🇸 | 0️⃣1️⃣ | 6️⃣3️⃣'
-      - 'رایگان | SS | @ROMAX_VPN | CA🇨🇦 | 0️⃣2️⃣ | 6️⃣4️⃣'
+      - Original
+      - Worker
+  - name: All - LoadBalance(ch)
+    type: load-balance
+    strategy: consistent-hashing
+    url: http://clients3.google.com/generate_204
+    interval: 600
+    proxies:
+      - Original
+      - Worker
+  - name: All - LoadBalance(rr)
+    type: load-balance
+    strategy: round-robin
+    url: http://clients3.google.com/generate_204
+    interval: 600
+    proxies:
+      - Original
+      - Worker
+  - name: Original
+    type: url-test
+    url: http://clients3.google.com/generate_204
+    interval: 600
+    proxies:
+      - remarks: 1-vless-worker-45.8.105.147,1
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 2087
+        sni: msw1.clash-sazan-eng.WOrkErS.Dev
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.WOrkErS.Dev
+        path: vless-ws/?ed=2048
+        address: 45.8.105.147,1
+        fp: randomized
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,10-20,20-50
+      - remarks: 2-vless-worker-104.17.161.0,3
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 2053
+        sni: msw1.clash-sazan-eng.WoRkers.DEv
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.WoRkers.DEv
+        path: vless-ws/?ed=2048
+        address: 104.17.161.0,3
+        fp: safari
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,50-100,10-50
+      - remarks: 3-vless-worker-104.17.161.198,4
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 2083
+        sni: msw1.clash-sazan-eng.WoRkERS.dEV
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.WoRkERS.dEV
+        path: vless-ws/?ed=2048
+        address: 104.17.161.198,4
+        fp: firefox
+        alpn: h2,http/1.1
+        fragment: tlshello,10-50,20-50
+      - remarks: 4-vless-worker-104.17.216.23,4
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 2096
+        sni: msw1.clash-sazan-eng.wOrkErs.deV
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.wOrkErs.deV
+        path: vless-ws/?ed=2048
+        address: 104.17.216.23,4
+        fp: chrome
+        alpn: h2
+        fragment: tlshello,20-50,10-20
+      - remarks: 5-vless-worker-104.18.50.109,2
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 2083
+        sni: msw1.clash-sazan-eng.wOrKeRS.DEv
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.wOrKeRS.DEv
+        path: vless-ws/?ed=2048
+        address: 104.18.50.109,2
+        fp: edge
+        alpn: h2,http/1.1
+        fragment: tlshello,20-50,20-50
+      - remarks: 6-vless-worker-104.17.215.18,4
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 2087
+        sni: msw1.clash-sazan-eng.WORkers.dev
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.WORkers.dev
+        path: vless-ws/?ed=2048
+        address: 104.17.215.18,4
+        fp: ios
+        alpn: http/1.1
+        fragment: tlshello,20-50,10-50
+      - remarks: 7-vless-worker-104.19.169.198,3
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 443
+        sni: msw1.clash-sazan-eng.wORkeRs.DEv
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.wORkeRs.DEv
+        path: vless-ws/?ed=2048
+        address: 104.19.169.198,3
+        fp: ios
+        alpn: h2
+        fragment: tlshello,30-80,20-50
+      - remarks: 8-vless-worker-104.19.116.203,4
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 2053
+        sni: msw1.clash-sazan-eng.wOrkerS.DeV
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.wOrkerS.DeV
+        path: vless-ws/?ed=2048
+        address: 104.19.116.203,4
+        fp: edge
+        alpn: h2,http/1.1
+        fragment: tlshello,10-20,10-20
+      - remarks: 9-vless-worker-104.18.50.109,2
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 443
+        sni: msw1.clash-sazan-eng.workeRS.DeV
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.workeRS.DeV
+        path: vless-ws/?ed=2048
+        address: 104.18.50.109,2
+        fp: ios
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,10-50,10-20
+      - remarks: 10-vless-worker-104.17.215.107,4
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 8443
+        sni: msw1.clash-sazan-eng.wORKErS.DEV
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.wORKErS.DEV
+        path: vless-ws/?ed=2048
+        address: 104.17.215.107,4
+        fp: android
+        alpn: http/1.1
+        fragment: tlshello,10-20,10-50
+      - remarks: 11-vless-worker-104.17.108.24,1
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 2053
+        sni: msw1.clash-sazan-eng.WOrkeRs.deV
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.WOrkeRs.deV
+        path: vless-ws/?ed=2048
+        address: 104.17.108.24,1
+        fp: firefox
+        alpn: http/1.1
+        fragment: tlshello,30-80,20-50
+      - remarks: 12-vless-worker-93.114.64.221,4
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 443
+        sni: msw1.clash-sazan-eng.wOrkeRs.deV
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.wOrkeRs.deV
+        path: vless-ws/?ed=2048
+        address: 93.114.64.221,4
+        fp: firefox
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,30-80,10-20
+      - remarks: 13-vless-worker-104.18.50.109,2
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 2087
+        sni: msw1.clash-sazan-eng.wORkeRs.deV
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.wORkeRs.deV
+        path: vless-ws/?ed=2048
+        address: 104.18.50.109,2
+        fp: chrome
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,50-100,10-20
+      - remarks: 14-vless-worker-104.18.237.80,4
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 443
+        sni: msw1.clash-sazan-eng.wORKErs.DeV
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.wORKErs.DeV
+        path: vless-ws/?ed=2048
+        address: 104.18.237.80,4
+        fp: firefox
+        alpn: h2,http/1.1
+        fragment: tlshello,30-80,10-20
+      - remarks: 15-vless-worker-104.19.120.53,2
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 2087
+        sni: msw1.clash-sazan-eng.worKeRS.DEV
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.worKeRS.DEV
+        path: vless-ws/?ed=2048
+        address: 104.19.120.53,2
+        fp: randomized
+        alpn: h2
+        fragment: tlshello,10-20,10-20
+      - remarks: 16-vless-worker-104.18.198.64,2
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 2096
+        sni: msw1.clash-sazan-eng.worKers.DeV
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.worKers.DeV
+        path: vless-ws/?ed=2048
+        address: 104.18.198.64,2
+        fp: chrome
+        alpn: h3,h2
+        fragment: tlshello,10-50,10-20
+      - remarks: 17-vless-worker-104.17.119.77,2
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 2053
+        sni: msw1.clash-sazan-eng.WOrKErs.dEv
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.WOrKErs.dEv
+        path: vless-ws/?ed=2048
+        address: 104.17.119.77,2
+        fp: edge
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,50-100,10-20
+      - remarks: 18-vless-worker-104.18.115.85,5
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 2087
+        sni: msw1.clash-sazan-eng.wORkERS.dEv
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.wORkERS.dEv
+        path: vless-ws/?ed=2048
+        address: 104.18.115.85,5
+        fp: ios
+        alpn: h2
+        fragment: tlshello,10-20,20-50
+      - remarks: 19-vless-worker-104.17.166.53,1
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 2053
+        sni: msw1.clash-sazan-eng.WORKERs.dEv
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.WORKERs.dEv
+        path: vless-ws/?ed=2048
+        address: 104.17.166.53,1
+        fp: randomized
+        alpn: http/1.1
+        fragment: tlshello,20-50,10-20
+      - remarks: 20-vless-worker-104.27.46.249,2
+        configType: vless
+        security: tls
+        tls: tls
+        network: ws
+        port: 443
+        sni: msw1.clash-sazan-eng.workeRs.Dev
+        uuid: d868d20e-768e-58f1-b0b4-4cc5552507cb
+        host: msw1.clash-sazan-eng.workeRs.Dev
+        path: vless-ws/?ed=2048
+        address: 104.27.46.249,2
+        fp: chrome
+        alpn: h2
+        fragment: tlshello,50-100,10-50
+      - configType: vmess
+        remarks: 59-🏁RELAY-172.64.194.98-9287
+        address: 172.64.194.98
+        port: 2095
+        uuid: 417d27fb-cb93-3bd8-9bf7-71cd91319821
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: ''
+        path: /hgcefomn
+        tls: ''
+        sni: ''
+        fp: android
+        alpn: http/1.1
+      - configType: vmess
+        remarks: 60-🇺🇸US-104.168.87.190-2174
+        address: 104.168.87.190
+        port: 1234
+        uuid: df2bc8f4-fc1a-4f4e-b0e5-fd49055b32a9
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: 104.168.87.190
+        path: /bb
+        tls: ''
+        sni: 104.168.87.190
+        fp: android
+        alpn: h3,h2,http/1.1
+      - configType: vmess
+        remarks: 61-🇦🇺AU-103.224.212.215-1158
+        address: vjp2.0bad.com
+        port: 443
+        uuid: 927094d3-d678-4763-8591-e240d0bcae87
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: vjp2.0bad.com
+        path: /chat
+        tls: tls
+        sni: vjp2.0bad.com
+        fp: ios
+        alpn: h2
+        fragment: tlshello,10-50,20-50
+      - configType: vmess
+        remarks: 62-🏁RELAY-104.21.237.68-0322
+        address: 104.21.237.68
+        port: 80
+        uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: a.prapt5.ir
+        path: /?ed=2048
+        tls: ''
+        sni: a.prapt5.ir
+        fp: android
+        alpn: h3,h2,http/1.1
+      - configType: vmess
+        remarks: 63-🇸🇬SG-8.222.174.108-0461
+        address: 8.222.174.108
+        port: 2082
+        uuid: 112ac36f-3f53-4e26-8371-d25c028e1b9a
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: s1c.v2.v001sss.xyz
+        path: /
+        tls: ''
+        sni: s1c.v2.v001sss.xyz
+        fp: randomized
+        alpn: h3,h2,http/1.1
+      - configType: vmess
+        remarks: 64-🇳🇱NL-13.73.229.250-1023
+        address: 13.73.229.250
+        port: 443
+        uuid: 4893ed3e-8a5f-48dc-aa1e-bbc2e67a065b
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: ''
+        path: /
+        tls: ''
+        sni: ''
+        fp: android
+        alpn: h2,http/1.1
+      - configType: vmess
+        remarks: 65-🏁RELAY-172.64.154.102-1373
+        address: 172.64.154.102
+        port: 443
+        uuid: 5f64fa65-7b14-49c5-954d-aa15c6bfcacd
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: clash6.ssr-free.xyz
+        path: /dongtaiwang.com
+        tls: tls
+        sni: clash6.ssr-free.xyz
+        fp: firefox
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,30-80,10-50
+      - configType: vmess
+        remarks: 66-🏁RELAY-104.19.155.92-1221
+        address: 104.19.155.92
+        port: 443
+        uuid: 52701795-3c3b-46b4-b7cf-c5978b3a4cf2
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: ''
+        path: /hdfyc5.achaemenidempireofpersia.uk/sNpuhb8v1rEIIa5hne1e
+        tls: tls
+        sni: ''
+        fp: ios
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,50-100,10-20
+      - configType: vmess
+        remarks: 67-🏁RELAY-104.18.213.21-1097
+        address: 104.18.213.21
+        port: 2087
+        uuid: 08ec6a06-8c15-4069-a781-8c725a30b7e7
+        alterId: 0
+        security: auto
+        network: grpc
+        type: auto
+        host: ''
+        path: ''
+        tls: tls
+        sni: ''
+        fp: randomized
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,50-100,10-50
+      - configType: vmess
+        remarks: 68-🇻🇳VN-103.187.168.180-1173
+        address: hn3.safepn.net
+        port: 80
+        uuid: ee76cecf-1219-42be-ae3f-6b8077e4cacc
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: hn3.safepn.net
+        path: /
+        tls: ''
+        sni: hn3.safepn.net
+        fp: android
+        alpn: h3,h2,http/1.1
+      - configType: vmess
+        remarks: 69-🏁RELAY-172.67.198.187-0153
+        address: hms04.xmivideo.cfd
+        port: 443
+        uuid: 93ea486a-bada-42a4-ac38-d088b320fa1e
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: xmivideo.cfd
+        path: /linkws
+        tls: tls
+        sni: xmivideo.cfd
+        fp: chrome
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,10-50,10-50
+      - configType: vmess
+        remarks: 70-🏁RELAY-172.67.204.84-0183
+        address: zula.ir
+        port: 443
+        uuid: 950db6aa-4926-4616-816e-ec0312dcb87b
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: jahfkjha.cfd
+        path: /linkws
+        tls: tls
+        sni: jahfkjha.cfd
+        fp: chrome
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,30-80,20-50
+      - configType: vmess
+        remarks: 71-🏁RELAY-172.67.207.26-0260
+        address: 172.67.207.26
+        port: 443
+        uuid: 76221bfb-e92f-4e80-81c5-6fe48f50ac0b
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: glweidf.sbs
+        path: /linkws
+        tls: tls
+        sni: glweidf.sbs
+        fp: chrome
+        alpn: h2
+        fragment: tlshello,50-100,20-50
+      - configType: vmess
+        remarks: 72-🇩🇪DE-23.158.56.229-3496
+        address: 23.158.56.229
+        port: 443
+        uuid: 03fcc618-b93d-6796-6aed-8a38c975d581
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: ''
+        path: /linkvws
+        tls: tls
+        sni: ''
+        fp: safari
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,50-100,20-50
+      - configType: vmess
+        remarks: 73-🏁RELAY-104.17.176.171-1077
+        address: npmjs.com
+        port: 443
+        uuid: 52701795-3c3b-46b4-b7cf-c5978b3a4cf2
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: npmjs.com
+        path: /hdfyc5.achaemenidempireofpersia.uk/sNpuhb8v1rEIIa5hne1e
+        tls: tls
+        sni: npmjs.com
+        fp: edge
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,10-20,10-20
+      - configType: vmess
+        remarks: 74-🇩🇪DE-5.75.168.155-1178
+        address: 5.75.168.155
+        port: 443
+        uuid: 6b7cbc41-fb80-41a8-8eb6-b5bdb0e86147
+        alterId: 0
+        security: auto
+        network: http
+        type: auto
+        host: ''
+        path: ''
+        tls: ''
+        sni: ''
+        fp: randomized
+        alpn: h3,h2
+      - configType: vmess
+        remarks: 75-🇭🇰HK-8.218.85.128-3538
+        address: 8.218.85.128
+        port: 80
+        uuid: 5d815dc6-a795-44ff-aeb6-7ee16a7a1c57
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: tw1.renwox.xyz
+        path: /needay?ed=2048
+        tls: ''
+        sni: tw1.renwox.xyz
+        fp: ios
+        alpn: h3,h2,http/1.1
+      - configType: vmess
+        remarks: 76-🇦🇺AU-103.224.212.215-1193
+        address: vus5.0bad.com
+        port: 443
+        uuid: 927094d3-d678-4763-8591-e240d0bcae87
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: vus5.0bad.com
+        path: /chat
+        tls: tls
+        sni: vus5.0bad.com
+        fp: android
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,50-100,20-50
+      - configType: vmess
+        remarks: 77-🏁RELAY-104.19.250.15-1003
+        address: 104.19.250.15
+        port: 2052
+        uuid: aec82fa6-ab70-4d0a-e7fb-422ef729d961
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: ''
+        path: /
+        tls: ''
+        sni: ''
+        fp: randomized
+        alpn: h2
+      - configType: vmess
+        remarks: 78-🇱🇺LU-202.78.162.5-1302
+        address: 202.78.162.5
+        port: 443
+        uuid: 716eded6-2201-4dbd-9d63-1638c9e8e677
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: pendar.onthewifi.com
+        path: /
+        tls: tls
+        sni: pendar.onthewifi.com
+        fp: randomized
+        alpn: h2
+        fragment: tlshello,10-50,10-20
+      - configType: vmess
+        remarks: 79-🏁RELAY-104.19.27.44-1270
+        address: 104.19.27.44
+        port: 2082
+        uuid: 82c3f0a2-fb48-352c-9ab9-3fc93d8887f1
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: 100.100.17.27.db-link02.top
+        path: /dabai.in442719
+        tls: ''
+        sni: data-us-1.db-link02.top
+        fp: safari
+        alpn: h3,h2,http/1.1
+      - configType: vmess
+        remarks: 80-🏁RELAY-172.67.79.117-1182
+        address: 172.67.79.117
+        port: 443
+        uuid: bd014532-1f8b-4d33-b79d-50131d8d4633
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: www.998808.xyz
+        path: /vbje5ytgwfgdrhe
+        tls: tls
+        sni: www.998808.xyz
+        fp: ios
+        alpn: h2,http/1.1
+        fragment: tlshello,20-50,20-50
+      - configType: vmess
+        remarks: 81-🏁RELAY-162.159.13.8-1127
+        address: 162.159.13.8
+        port: 443
+        uuid: 1F7C900A-6AD7-41CF-A37E-85873E566C40
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: Kansas.gafn.online
+        path: /speedtest
+        tls: tls
+        sni: Kansas.gafn.online
+        fp: chrome
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,50-100,10-20
+      - configType: vmess
+        remarks: 82-🇺🇸 美国 CloudFlare节点
+        address: 104.19.40.84
+        port: 8880
+        uuid: 57e0cb4d-eae5-48ec-8091-149dc2b309e0
+        alterId: '0'
+        security: auto
+        network: ws
+        type: none
+        host: uk.moss.network
+        path: /d/65dd503.TG.WangCai2.WangCai_8:107690
+        tls: ''
+        sni: uk.moss.network
+        fp: edge
+        alpn: h2
+      - configType: vmess
+        remarks: 83-🇺🇸 美国(欢迎订阅Youtube破解资源君)
+        address: 104.16.147.69
+        port: 443
+        uuid: c14d7a06-9e86-4dcb-8c0d-ade3d3361bad
+        alterId: '0'
+        security: auto
+        network: ws
+        type: none
+        host: yzjd03.7595333.workers.dev
+        path: /
+        tls: tls
+        sni: yzjd03.7595333.workers.dev
+        fp: ios
+        alpn: h2
+        fragment: tlshello,30-80,10-20
+      - configType: vmess
+        remarks: 84-🇺🇸 美国(欢迎订阅Youtube破解资源君)
+        address: 149.248.1.76
+        port: 27266
+        uuid: 1a79bde9-ac7a-4cd9-899c-6dbbe35e16dd
+        alterId: '0'
+        security: auto
+        network: ws
+        type: none
+        host: 149.248.1.76
+        path: /QEc5C9RG/
+        tls: ''
+        sni: 149.248.1.76
+        fp: randomized
+        alpn: http/1.1
+      - configType: vmess
+        remarks: 85-🇺🇸 _US_美国->🇩🇪_DE_德国
+        address: 104.21.225.99
+        port: 80
+        uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+        alterId: '0'
+        security: auto
+        network: ws
+        type: none
+        host: a.prapt5.ir
+        path: /
+        tls: ''
+        sni: a.prapt5.ir
+        fp: safari
+        alpn: h2
+      - configType: vmess
+        remarks: 86-🇺🇸 美国(欢迎订阅Youtube破解资源君)
+        address: 192.18.142.28
+        port: 55051
+        uuid: 3f7c0994-0b8c-49b7-e4d1-5af10d554c33
+        alterId: '0'
+        security: auto
+        network: tcp
+        type: none
+        host: 192.18.142.28
+        path: /
+        tls: ''
+        sni: 192.18.142.28
+        fp: chrome
+        alpn: h3,h2,http/1.1
+      - configType: vmess
+        remarks: 87-🇺🇸 _US_美国->🇩🇪_DE_德国
+        address: 104.21.227.36
+        port: 80
+        uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+        alterId: '0'
+        security: auto
+        network: ws
+        type: none
+        host: a.prapt5.ir
+        path: /
+        tls: ''
+        sni: a.prapt5.ir
+        fp: chrome
+        alpn: h2
+      - configType: vmess
+        remarks: 88-🇺🇸 _US_美国->🇩🇪_DE_德国
+        address: 104.21.225.64
+        port: 80
+        uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+        alterId: '0'
+        security: auto
+        network: ws
+        type: none
+        host: a.prapt5.ir
+        path: /
+        tls: ''
+        sni: a.prapt5.ir
+        fp: chrome
+        alpn: h3,h2
+      - configType: vmess
+        remarks: 89-🇺🇸 _US_美国->🇩🇪_DE_德国
+        address: 104.21.225.123
+        port: 80
+        uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+        alterId: '0'
+        security: auto
+        network: ws
+        type: none
+        host: a.prapt5.ir
+        path: /
+        tls: ''
+        sni: a.prapt5.ir
+        fp: chrome
+        alpn: h2,http/1.1
+      - configType: vmess
+        remarks: 90-🇭🇰 香港(欢迎订阅Youtube破解资源君)
+        address: hkaz3.xmrth-node.xyz
+        port: 12567
+        uuid: ebb8920a-63c4-368f-b3fd-3794f4fa1c98
+        alterId: '2'
+        security: auto
+        network: ws
+        type: none
+        host: hkaz3.xmrth-node.xyz
+        path: /index
+        tls: ''
+        sni: hkaz3.xmrth-node.xyz
+        fp: chrome
+        alpn: h2
+      - configType: vmess
+        remarks: 91-🇺🇸 美国(欢迎订阅Youtube破解资源君)
+        address: hk3.fdns.cloudlink123.com
+        port: 80
+        uuid: 3f6006ca-e8ba-49d5-af9d-f4806dd36e09
+        alterId: '0'
+        security: auto
+        network: ws
+        type: none
+        host: hk3.fdns.cloudlink123.com
+        path: /
+        tls: ''
+        sni: hk3.fdns.cloudlink123.com
+        fp: safari
+        alpn: h3,h2,http/1.1
+      - configType: vmess
+        remarks: 92-🇺🇸 _US_美国->🇩🇪_DE_德国
+        address: 104.21.225.223
+        port: 80
+        uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+        alterId: '0'
+        security: auto
+        network: ws
+        type: none
+        host: a.prapt5.ir
+        path: /?ed=2048
+        tls: ''
+        sni: a.prapt5.ir
+        fp: chrome
+        alpn: h2
+      - configType: vmess
+        remarks: 93-🇯🇵 日本(欢迎订阅Youtube破解资源君)
+        address: 140.238.48.194
+        port: 8888
+        uuid: 24f1dfad-1267-4297-8e88-0e9b8ef47e47
+        alterId: '0'
+        security: auto
+        network: tcp
+        type: none
+        host: 140.238.48.194
+        path: /
+        tls: ''
+        sni: 140.238.48.194
+        fp: chrome
+        alpn: h3,h2,http/1.1
+      - configType: vmess
+        remarks: 94-🇺🇸 _US_美国->🇩🇪_DE_德国
+        address: 104.21.225.158
+        port: 80
+        uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+        alterId: '0'
+        security: auto
+        network: ws
+        type: none
+        host: a.prapt5.ir
+        path: /
+        tls: ''
+        sni: a.prapt5.ir
+        fp: chrome
+        alpn: h3,h2
+      - configType: vmess
+        remarks: 95-🇺🇸 _US_美国->🇩🇪_DE_德国
+        address: 104.21.230.30
+        port: 80
+        uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+        alterId: '0'
+        security: auto
+        network: ws
+        type: none
+        host: a.prapt5.ir
+        path: /?ed=2048
+        tls: ''
+        sni: a.prapt5.ir
+        fp: android
+        alpn: h3,h2,http/1.1
+      - configType: vmess
+        remarks: 96-🇺🇸 _US_美国->🇩🇪_DE_德国
+        address: 104.21.232.64
+        port: 80
+        uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+        alterId: '0'
+        security: auto
+        network: ws
+        type: none
+        host: a.prapt5.ir
+        path: /?ed=2048
+        tls: ''
+        sni: a.prapt5.ir
+        fp: randomized
+        alpn: h3,h2,http/1.1
+      - configType: vmess
+        remarks: 97-🇺🇸 _US_美国->🇩🇪_DE_德国
+        address: 104.21.225.94
+        port: 80
+        uuid: 7022982f-da4c-48c9-c660-b2315abdcf7e
+        alterId: '0'
+        security: auto
+        network: ws
+        type: none
+        host: a.prapt5.ir
+        path: /
+        tls: ''
+        sni: a.prapt5.ir
+        fp: safari
+        alpn: h3,h2
+  - name: Worker
+    type: url-test
+    url: http://clients3.google.com/generate_204
+    interval: 600
+    proxies:
+      - configType: vmess
+        remarks: 21-🏁RELAY-172.67.199.34-6119-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 20e92881-5fb4-4b05-bc77-57929476dc69
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.wORkeRs.DEV
+        path: /lvryzenkvm1gb.sharecentre.online:443/shirker
+        tls: tls
+        sni: msw1.clash-sazan-eng.wORkeRs.DEV
+        merged: true
+        fp: randomized
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,30-80,20-50
+      - configType: vmess
+        remarks: 22-🏁RELAY-203.30.190.191-1466-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 56a2188b-2ab7-402c-b9b8-34847fdf0958
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.WORkErs.DEV
+        path: /oplg1.zhujicn2.com:443/5QNROSRV
+        tls: tls
+        sni: msw1.clash-sazan-eng.WORkErs.DEV
+        merged: true
+        fp: android
+        alpn: h3,h2
+        fragment: tlshello,50-100,10-50
+      - configType: vmess
+        remarks: 23-🏁RELAY-104.18.27.8-1098-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: c8abf66a-1903-4638-a448-9c86733e4254
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.WOrKERs.dev
+        path: /sand.blanku.me:443/wss13480
+        tls: tls
+        sni: msw1.clash-sazan-eng.WOrKERs.dev
+        merged: true
+        fp: edge
+        alpn: h2
+        fragment: tlshello,10-50,10-50
+      - configType: vmess
+        remarks: 24-🏁RELAY-198.41.212.92-5852-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: bd014532-1f8b-4d33-b79d-50131d8d4633
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.WORKERS.DeV
+        path: /www.998808.xyz:443/vbje5ytgwfgdrhe
+        tls: tls
+        sni: msw1.clash-sazan-eng.WORKERS.DeV
+        merged: true
+        fp: firefox
+        alpn: h3,h2
+        fragment: tlshello,30-80,20-50
+      - configType: vmess
+        remarks: 25-🏁RELAY-104.21.15.212-0250-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 76221bfb-e92f-4e80-81c5-6fe48f50ac0b
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.worKERs.deV
+        path: /glweidf.sbs:443/linkws
+        tls: tls
+        sni: msw1.clash-sazan-eng.worKERs.deV
+        merged: true
+        fp: safari
+        alpn: http/1.1
+        fragment: tlshello,30-80,10-20
+      - configType: vmess
+        remarks: 26-🏁RELAY-172.67.143.74-1031-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: A9A56660-4554-4278-863A-D3CE30294B59
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.WorkErS.DEV
+        path: /pure.daycat.space:443/
+        tls: tls
+        sni: msw1.clash-sazan-eng.WorkErS.DEV
+        merged: true
+        fp: firefox
+        alpn: h2
+        fragment: tlshello,50-100,20-50
+      - configType: vmess
+        remarks: 27-🇺🇸US-66.241.124.229-1011-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: ea4909ef-7ca6-4b46-bf2e-6c07896ef338
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.worKErs.DeV
+        path: /cold-dawn-9246.fly.dev:443/ea4909ef-7ca6-4b46-bf2e-6c07896ef338-vm
+        tls: tls
+        sni: msw1.clash-sazan-eng.worKErs.DeV
+        merged: true
+        fp: randomized
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,20-50,10-20
+      - configType: vmess
+        remarks: 28-🏁RELAY-104.21.36.26-2361-worker
+        address: 104.16.118.238,1
+        port: 8443
+        uuid: 1cec1ebc-b489-4769-f2d9-e079b5832a60
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.worKers.deV
+        path: /cloudconeaaa.gorgorchicken.one:8443/cloudconeaaa
+        tls: tls
+        sni: msw1.clash-sazan-eng.worKers.deV
+        merged: true
+        fp: chrome
+        alpn: http/1.1
+        fragment: tlshello,10-50,10-50
+      - configType: vmess
+        remarks: 29-🏁RELAY-172.67.174.92-0175-worker
+        address: 104.16.118.238,1
+        port: 2053
+        uuid: 869caccc-12af-4276-f458-366fa256f8a0
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.woRKeRS.dev
+        path: /qin15.rong1104.uk:2053/
+        tls: tls
+        sni: msw1.clash-sazan-eng.woRKeRS.dev
+        merged: true
+        fp: edge
+        alpn: h2,http/1.1
+        fragment: tlshello,10-20,10-50
+      - configType: vmess
+        remarks: 30-🏁RELAY-141.101.114.134-0933-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 4612618c-24cd-4379-9924-cfdf3d61fa5a
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.WORkErs.dev
+        path: /opfr1.v2rayfree1.xyz:443/IYKLD53M
+        tls: tls
+        sni: msw1.clash-sazan-eng.WORkErs.dev
+        merged: true
+        fp: randomized
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,30-80,10-50
+      - configType: vmess
+        remarks: 31-🏁RELAY-172.67.174.92-0187-worker
+        address: 104.16.118.238,1
+        port: 2053
+        uuid: f8d2fd33-ab8e-4004-f97d-10dde80af010
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.wORKErS.DeV
+        path: /qin14.rong1104.uk:2053/qin14
+        tls: tls
+        sni: msw1.clash-sazan-eng.wORKErS.DeV
+        merged: true
+        fp: randomized
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,50-100,10-50
+      - configType: vmess
+        remarks: 32-🏁RELAY-104.18.12.15-2095-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 7a70e0f7-170d-4ab0-82a0-c40554bfb320
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.woRKErs.deV
+        path: /workers.dev:443/111111.online
+        tls: tls
+        sni: msw1.clash-sazan-eng.woRKErs.deV
+        merged: true
+        fp: safari
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,10-50,10-50
+      - configType: vmess
+        remarks: 33-🏁RELAY-185.162.228.229-0897-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 56a2188b-2ab7-402c-b9b8-34847fdf0958
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.wORKeRs.DEV
+        path: /oplg1.zhujicn2.com:443/5QNROSRV
+        tls: tls
+        sni: msw1.clash-sazan-eng.wORKeRs.DEV
+        merged: true
+        fp: edge
+        alpn: h3,h2
+        fragment: tlshello,30-80,10-50
+      - configType: vmess
+        remarks: 34-🇭🇰HK-156.226.123.36-6594-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 9d476be9-eca3-4561-9b56-6ff4ec1017ba
+        alterId: 4
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.WorkerS.DeV
+        path: /in1.3320.top:443/
+        tls: tls
+        sni: msw1.clash-sazan-eng.WorkerS.DeV
+        merged: true
+        fp: ios
+        alpn: http/1.1
+        fragment: tlshello,20-50,20-50
+      - configType: vmess
+        remarks: 35-🇦🇺AU-103.224.212.211-1412-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 81d93f62-15a2-4994-adb9-0b5d906aac7e
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.worKErs.DEv
+        path: /20.72img.xyz:443/
+        tls: tls
+        sni: msw1.clash-sazan-eng.worKErs.DEv
+        merged: true
+        fp: randomized
+        alpn: h3,h2
+        fragment: tlshello,50-100,10-50
+      - configType: vmess
+        remarks: 36-🏁RELAY-23.227.38.38-1536-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: c5a2d7b8-bf84-4f97-8577-b9b87f2baaf7
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.WORkers.DeV
+        path: /oplg1.cfcdn2.xyz:443/AUIKN8AU
+        tls: tls
+        sni: msw1.clash-sazan-eng.WORkers.DeV
+        merged: true
+        fp: chrome
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,50-100,20-50
+      - configType: vmess
+        remarks: 37-🏁RELAY-203.30.190.192-1508-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 17b2a313-37a0-4945-a8e4-e63375506b4a
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.WOrkers.deV
+        path: /lg10.cfcdn1.xyz:443/A2DJOPFT
+        tls: tls
+        sni: msw1.clash-sazan-eng.WOrkers.deV
+        merged: true
+        fp: safari
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,30-80,20-50
+      - configType: vmess
+        remarks: 38-🇹🇷TR-95.164.116.35-0740-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 9eb99213-f082-4b5e-87c1-0511798c7da2
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.WORkeRs.dEV
+        path: /tr-full.privateip.net:443/
+        tls: tls
+        sni: msw1.clash-sazan-eng.WORkeRs.dEV
+        merged: true
+        fp: randomized
+        alpn: http/1.1
+        fragment: tlshello,30-80,10-20
+      - configType: vmess
+        remarks: 39-🇹🇼TW-220.130.80.179-6204-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: ceb8a7f4-a45b-48a7-8f8e-ca7124a5ebee
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.wOrkers.dEV
+        path: /v2ray2.udpgw.com:443/howdy
+        tls: ''
+        sni: msw1.clash-sazan-eng.wOrkers.dEV
+        merged: true
+        fp: ios
+        alpn: h3,h2,http/1.1
+      - configType: vmess
+        remarks: 40-🏁RELAY-104.21.67.88-1903-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 3853a2ab-6bec-4503-89b9-d3cbcc6b69c9
+        alterId: 64
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.woRKerS.dEV
+        path: /hkd1.quickerlink.xyz:443/h6jr23x9h3lqiitg
+        tls: tls
+        sni: msw1.clash-sazan-eng.woRKerS.dEV
+        merged: true
+        fp: randomized
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,30-80,10-50
+      - configType: vmess
+        remarks: 41-🏁RELAY-172.67.174.42-0143-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: bc864078-dcf3-4bf4-8dbf-ca9f200b56be
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.WoRKErs.dEv
+        path: /gwdef.sbs:443/linkws
+        tls: tls
+        sni: msw1.clash-sazan-eng.WoRKErs.dEv
+        merged: true
+        fp: chrome
+        alpn: h2,http/1.1
+        fragment: tlshello,50-100,10-50
+      - configType: vmess
+        remarks: 42-🏁RELAY-203.24.108.9-0918-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 56a2188b-2ab7-402c-b9b8-34847fdf0958
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.wOrkERs.Dev
+        path: /oplg1.zhujicn2.com:443/5QNROSRV
+        tls: tls
+        sni: msw1.clash-sazan-eng.wOrkERs.Dev
+        merged: true
+        fp: ios
+        alpn: h2
+        fragment: tlshello,30-80,10-20
+      - configType: vmess
+        remarks: 43-🏁RELAY-172.67.132.15-1517-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 18e5f40f-bda6-4c15-9334-e87cda6047af
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.wORKers.dEV
+        path: /ming2.kiwireich.com:443/ray
+        tls: tls
+        sni: msw1.clash-sazan-eng.wORKers.dEV
+        merged: true
+        fp: android
+        alpn: http/1.1
+        fragment: tlshello,10-20,10-20
+      - configType: vmess
+        remarks: 44-🏁RELAY-173.245.49.10-6444-worker
+        address: 104.16.118.238,1
+        port: 8443
+        uuid: a6a37e04-5e81-44c9-be53-baa3ff46eb8b
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.WorKeRS.dev
+        path: /us-171-78.shoptunnel.live:8443/
+        tls: tls
+        sni: msw1.clash-sazan-eng.WorKeRS.dev
+        merged: true
+        fp: android
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,30-80,10-50
+      - configType: vmess
+        remarks: 45-🏁RELAY-141.101.114.30-1418-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 40d496a6-ceeb-4096-baeb-4cc52b205621
+        alterId: 0
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.WorKERs.DEv
+        path: /lg1.trump2023.us:443/ECTCJ0DF
+        tls: tls
+        sni: msw1.clash-sazan-eng.WorKERs.DEv
+        merged: true
+        fp: chrome
+        alpn: h3,h2
+        fragment: tlshello,10-50,10-20
+      - configType: vmess
+        remarks: 46-🇺🇸 github.com/freefq - 美国Fastly全球Anycast节点 13-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 77848824-93b7-4b89-ffd0-e91afff406ce
+        alterId: '0'
+        security: auto
+        network: ws
+        type: none
+        host: msw1.clash-sazan-eng.WoRKers.dev
+        path: /zheshiscp.com:443/77848824
+        tls: tls
+        sni: msw1.clash-sazan-eng.WoRKers.dev
+        merged: true
+        fp: chrome
+        alpn: h3,h2
+        fragment: tlshello,10-50,10-20
+      - configType: vmess
+        remarks: 47-🇮🇳 印度 v2rayfree.eu.org-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 716eded6-2201-4dbd-9d63-1638c9e8e677
+        alterId: '0'
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.woRKErS.dev
+        path: /pendar.onthewifi.com:443/
+        tls: tls
+        sni: msw1.clash-sazan-eng.woRKErS.dev
+        merged: true
+        fp: randomized
+        alpn: h2
+        fragment: tlshello,10-50,20-50
+      - configType: vmess
+        remarks: 48-🇪🇺 欧洲(欢迎订阅Youtube破解资源君)-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 4850777c-1d10-4651-9936-27a2a500b9a2
+        alterId: '0'
+        security: auto
+        network: ws
+        type: none
+        host: msw1.clash-sazan-eng.woRKERs.Dev
+        path: /vps.qweasdzxc.ml:443/
+        tls: tls
+        sni: msw1.clash-sazan-eng.woRKERs.Dev
+        merged: true
+        fp: chrome
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,10-20,10-20
+      - configType: vmess
+        remarks: 49-🇮🇳 github.com/freefq - 印度  10-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 716eded6-2201-4dbd-9d63-1638c9e8e677
+        alterId: '0'
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.wOrkERS.DeV
+        path: /pendar.onthewifi.com:443/
+        tls: tls
+        sni: msw1.clash-sazan-eng.wOrkERS.DeV
+        merged: true
+        fp: randomized
+        alpn: h3,h2
+        fragment: tlshello,20-50,10-50
+      - configType: vmess
+        remarks: 50-🇸🇬 新加坡(欢迎订阅Youtube破解资源君)-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: ff382d09-becd-41cb-8e4f-3e256b27de47
+        alterId: '0'
+        security: auto
+        network: ws
+        type: none
+        host: msw1.clash-sazan-eng.woRKErS.dev
+        path: /sg3.31vpn.com:443/fastssh/ntmdq/6267584ee4988/
+        tls: tls
+        sni: msw1.clash-sazan-eng.woRKErS.dev
+        merged: true
+        fp: ios
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,30-80,20-50
+      - configType: vmess
+        remarks: 51-🇺🇸 美国(欢迎订阅Youtube破解资源君)-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: dc0887b9-4c05-428c-adce-4235d1636341
+        alterId: '0'
+        security: auto
+        network: ws
+        type: none
+        host: msw1.clash-sazan-eng.wORkERS.dEV
+        path: /8.ezydfdd.com:443/qwe
+        tls: tls
+        sni: msw1.clash-sazan-eng.wORkERS.dEV
+        merged: true
+        fp: chrome
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,10-50,10-50
+      - configType: vmess
+        remarks: 52-🇯🇵 日本(欢迎订阅Youtube破解资源君)-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 000fe881-b655-4212-b804-b00f9970d5aa
+        alterId: '0'
+        security: auto
+        network: ws
+        type: none
+        host: msw1.clash-sazan-eng.WoRkeRs.Dev
+        path: /v2ray.788644.xyz:443/happy
+        tls: tls
+        sni: msw1.clash-sazan-eng.WoRkeRs.Dev
+        merged: true
+        fp: chrome
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,10-20,10-50
+      - configType: vmess
+        remarks: 53-🇺🇸 美国Fastly全球Anycast节点 13-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 77848824-93b7-4b89-ffd0-e91afff406ce
+        alterId: '0'
+        security: auto
+        network: ws
+        type: none
+        host: msw1.clash-sazan-eng.WORKErs.DEv
+        path: /zheshiscp.com:443/77848824
+        tls: tls
+        sni: msw1.clash-sazan-eng.WORKErs.DEv
+        merged: true
+        fp: randomized
+        alpn: h3,h2,http/1.1
+        fragment: tlshello,10-50,10-50
+      - configType: vmess
+        remarks: 54-🇮🇳 github.com/freefq - 印度  2-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 2ff97c6d-8557-42a4-b43f-19c77c5959ea
+        alterId: '0'
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.workers.dev
+        path: /irsoft.sytes.net:443/
+        tls: tls
+        sni: msw1.clash-sazan-eng.workers.dev
+        merged: true
+        fp: chrome
+        alpn: h2,http/1.1
+        fragment: tlshello,50-100,10-50
+      - configType: vmess
+        remarks: 55-🇮🇳 印度  2-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 2ff97c6d-8557-42a4-b43f-19c77c5959ea
+        alterId: '0'
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.WORKeRS.dEv
+        path: /irsoft.sytes.net:443/
+        tls: tls
+        sni: msw1.clash-sazan-eng.WORKeRS.dEv
+        merged: true
+        fp: randomized
+        alpn: http/1.1
+        fragment: tlshello,50-100,10-50
+      - configType: vmess
+        remarks: 56-🇮🇳 github.com/freefq - 印度  3-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 118287d2-e968-42e1-80d0-12fa2f5d38d6
+        alterId: '0'
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.WOrKErs.DEV
+        path: /sahand.serveminecraft.net:443/
+        tls: tls
+        sni: msw1.clash-sazan-eng.WOrKErs.DEV
+        merged: true
+        fp: firefox
+        alpn: h2
+        fragment: tlshello,10-50,10-50
+      - configType: vmess
+        remarks: 57-🇮🇳 印度  10-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 716eded6-2201-4dbd-9d63-1638c9e8e677
+        alterId: '0'
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.woRKERS.DEv
+        path: /pendar.onthewifi.com:443/
+        tls: tls
+        sni: msw1.clash-sazan-eng.woRKERS.DEv
+        merged: true
+        fp: ios
+        alpn: h3,h2
+        fragment: tlshello,50-100,10-50
+      - configType: vmess
+        remarks: 58-🇮🇳 印度  3-worker
+        address: 104.16.118.238,1
+        port: 443
+        uuid: 118287d2-e968-42e1-80d0-12fa2f5d38d6
+        alterId: '0'
+        security: auto
+        network: ws
+        type: auto
+        host: msw1.clash-sazan-eng.wOrkeRs.Dev
+        path: /sahand.serveminecraft.net:443/
+        tls: tls
+        sni: msw1.clash-sazan-eng.wOrkeRs.Dev
+        merged: true
+        fp: randomized
+        alpn: h3,h2
+        fragment: tlshello,10-20,10-20
 rules:
-  - IP-CIDR,127.0.0.1/32,DIRECT,no-resolve
-  - IP-CIDR,198.18.0.1/16,DIRECT,no-resolve
-  - IP-CIDR,28.0.0.1/8,DIRECT,no-resolve
-  - IP-CIDR6,::1/128,DIRECT,no-resolve
-  - DOMAIN-SUFFIX,local,DIRECT
-  - DOMAIN-SUFFIX,ip6-localhost,DIRECT
-  - DOMAIN-SUFFIX,ip6-loopback,DIRECT
-  - DOMAIN-SUFFIX,lan,DIRECT
-  - DOMAIN-SUFFIX,localhost,DIRECT
+  - GEOIP,IR,DIRECT
   - DOMAIN-SUFFIX,ir,DIRECT
-  - DOMAIN,clash.razord.top,DIRECT
-  - DOMAIN,yacd.haishan.me,DIRECT
-  - DOMAIN,yacd.metacubex.one,DIRECT
-  - DOMAIN,clash.metacubex.one,DIRECT
-  - MATCH,MANUAL
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - MATCH,All
